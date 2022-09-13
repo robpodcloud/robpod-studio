@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+The <plugins> element (required) contains the description of the plugins
+available at this repository.
+-->
+<plugins>
+  <!--
+  Each <plugin> element (required) describes one plugin in the repository.
+  Attributes:
+   - "id" (required) - used by JetBrains IDEs to uniquely identify
+     a plugin. Must match <id> in the plugin.xml file.
+   - "url" (required) - URL to download the plugin JAR/ZIP file.
+     Must be HTTPS.
+   - "version" (required) - version of this plugin. Must match <version>
+     in the plugin.xml file.
+  -->
+  <plugin
+      id="fully.qualified.id.of.this.plugin"
+      url="https://mycompany.example.com/my_repo/my_plugin.jar"
+      version="major.minor.update">
+    <!--
+    The <idea-version> element (required) must match the same element
+    in the plugin.xml file.
+    -->
+    <idea-version since-build="181.3" until-build="191.*"/>
+  </plugin>
+  <plugin
+      id="id.of.different.plugin"
+      url="https://othercompany.example.com/other_repo/other_plugin.jar"
+      version="major.minor">
+    <idea-version since-build="181.3" until-build="191.*"/>
+  </plugin>
+  <!-- And so on for other plugins... -->
+</plugins>
