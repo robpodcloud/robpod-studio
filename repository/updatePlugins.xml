@@ -2,7 +2,7 @@
 <plugins>
   <plugin
       id="cloud.robpod.studio"
-      url="https://github.com/robpodcloud/robpod-studio/releases/download/1.0.0/robpod-studio-1.0.0.zip"
+      url="https://github.com/robpodcloud/robpod-studio/releases/download/1.0.1/robpod-studio-1.0.1.zip"
       version="1.0.1">
     <name>Robpod Studio</name>
     <description><![CDATA[
