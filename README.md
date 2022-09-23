@@ -1,4 +1,5 @@
-# Robpod Studio
+![image](https://www.robpod.cloud/wp-content/uploads/2022/09/robpod-studio-logo.png)
+
 Integrated Development Environment for **Collaborative Robotics** and **Artificial Intelligence** applications based on [PyCharm](https://www.jetbrains.com/pycharm/) platform.
 
 Visit [Robpod Cloud](https://www.robpod.cloud/) for more info.
