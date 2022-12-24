@@ -2,8 +2,18 @@
 <plugins>
   <plugin
       id="cloud.robpod.studio"
-      url="https://rb.gy/v85xjr"
+      url="https://github.com/robpodcloud/robpod-studio/releases/download/1.0.5/robpod-studio.zip"
       version="1.0.5">
+    <name>Robpod Studio</name>
+    <description><![CDATA[
+    Integrated Development Environment for Collaborative Robotics and Artificial Intelligence applications.
+    ]]></description>
+  </plugin>
+  
+    <plugin
+      id="cloud.robpod.studio"
+      url="https://github.com/robpodcloud/robpod-studio/releases/download/1.0.4/robpod-studio.zip"
+      version="1.0.4">
     <name>Robpod Studio</name>
     <description><![CDATA[
     Integrated Development Environment for Collaborative Robotics and Artificial Intelligence applications.
