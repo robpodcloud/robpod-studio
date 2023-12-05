@@ -1,0 +1,54 @@
+# cube struct definitions
+cube_green  = struct(x=0.75, y=0.5, z=0.25, side_length=0.5, color=[85, 255, 0])
+cube_purple = struct(x=0.75, y=0.5, z=1.25, side_length=0.5, color=[255, 0, 255])
+cube_blue   = struct(x=0.75, y=-0.5, z=1.25, side_length=0.5, color=[0, 170, 255])
+cube_yellow = struct(x=0.75, y=-0.5, z=0.25, side_length=0.5, color=[255, 255, 0])
+
+# cube struct functions
+def is_inside(cube):
+    pose = get_actual_tcp_pose()
+    return (pose[0] < cube.x + cube.side_length/2 and pose[0] > cube.x - cube.side_length/2 and
+        pose[1] < cube.y + cube.side_length/2 and pose[1] > cube.y - cube.side_length/2 and
+        pose[2] < cube.z + cube.side_length/2 and pose[2] > cube.z - cube.side_length/2)
+end
+
+def set_color(cube):
+    r = cube.color[0]
+    g = cube.color[1]
+    b = cube.color[2]
+    set_baselight_solid(r, g, b)
+end
+
+def move_to_cube(cube):
+    movel(p[cube.x, cube.y, cube.z, 2.20, -2.20, -0.05])
+end
+
+# baselight update thread
+thread color_check_thread():
+    while True:
+        if is_inside(cube_green):
+            set_color(cube_green)
+        elif is_inside(cube_purple):
+            set_color(cube_purple)
+        elif is_inside(cube_blue):
+            set_color(cube_blue)
+        elif is_inside(cube_yellow):
+            set_color(cube_yellow)
+        else:
+            set_baselight_solid(255, 255, 255)
+        end
+        sleep(0.3)
+        set_baselight_off()
+        sleep(0.3)
+    end
+end
+
+run color_check_thread()
+
+# robot motions
+while True:
+    move_to_cube(cube_yellow)
+    move_to_cube(cube_green)
+    move_to_cube(cube_purple)
+    move_to_cube(cube_blue)
+end
