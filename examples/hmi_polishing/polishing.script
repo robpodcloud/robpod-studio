@@ -1,0 +1,36 @@
+# variables
+global step = 100
+global radius = 30
+
+# positions (can be defined also as installation variables to store their value)
+global pa = p[0, 0, 0, 0, 0, 0]
+global pb = p[0, 0, 0, 0, 0, 0]
+global pc = p[0, 0, 0, 0, 0, 0]
+global pd = p[0, 0, 0, 0, 0, 0]
+
+# functions
+def polish():
+    d_ab = point_dist(pa, pb)
+
+    repetitions = floor(d_ab / (step/1000))
+    percentage_ab = (step/1000) / d_ab
+    percentage_cd = 1 / repetitions
+
+    i = 0
+    while i < repetitions:
+        p1 = interpolate_pose(pa, pb, i * percentage_ab)
+        movel(p1, a=0.1, v=0.2, r=radius/1000)
+
+        p2 = interpolate_pose(pc, pd, i * percentage_cd)
+        movel(p2, a=0.1, v=0.2, r=radius/1000)
+
+        p3 = interpolate_pose(pc, pd, (i + 1) * percentage_cd)
+        movel(p3, a=0.1, v=0.2, r=radius/1000)
+
+        p4 = interpolate_pose(pa, pb, (i + 1) * percentage_ab)
+        movel(p4, a=0.1, v=0.2, r=radius/1000)
+
+        i = i + 2
+
+    end
+end

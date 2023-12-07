@@ -1,0 +1,47 @@
+# variables
+repetitions = 20
+counter = 0
+loop_forever = False
+velocity = 200
+status = "READY"
+
+# gripper functions
+def open_gripper():
+    textmsg("open")
+    #rq_open()
+end
+
+def close_gripper():
+    textmsg("close")
+    #rq_close()
+end
+
+# pick place functions
+def pick(pose):
+    status = "PICKING"
+    approach = pose_trans(pose, p[0, 0, -0.1, 0, 0, 0])
+    movel(approach, a=0.1, v=velocity/1000)
+    movel(pick_pose, a=0.1, v=velocity/1000)
+    close_gripper()
+    movel(approach, a=0.1, v=velocity/1000)
+end
+
+def place(pose):
+    status = "PLACING"
+    approach = pose_trans(pose, p[0, 0, -0.1, 0, 0, 0])
+    movel(approach, a=0.1, v=velocity/1000)
+    movel(pick_pose, a=0.1, v=velocity/1000)
+    open_gripper()
+    movel(approach, a=0.1, v=velocity/1000)
+end
+
+def start_task():
+    while loop_forever or counter < repetitions:
+        pick(pick_pose)
+        place(place_pose)
+        pick(place_pose)
+        place(pick_pose)
+        counter = counter + 1
+    end
+    status = "READY"
+end
