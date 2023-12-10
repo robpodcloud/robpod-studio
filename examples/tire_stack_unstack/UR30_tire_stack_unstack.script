@@ -1,0 +1,78 @@
+# positions
+home_pose_right = [1.05, -2.13, -0.49, 4.19, -4.71, 5.77]
+home_pose_left = [-0.62, -2.13, -0.49, 4.19, -4.71, 4.09]
+pose_center = [1.18, -0.91, -1.76, 5.81, -5.89, 4.53]
+pose_right = p[0.636, 0.713, -0.694, -3.14, 0.00, 0.00]
+pose_left = p[0.636, -0.713, -0.694, -3.14, 0.00, 0.00]
+
+tire_height = 0.335
+
+# robot functions
+def pick(pose, index, inverse=False):
+    pick_pose = pose_add(pose, p[0, 0, index * tire_height, 0, 0, 0])
+    approach = pose_add(pick_pose, p[0, 0, 0.2, 0, 0, 0])
+    movel(approach)
+    movel(pick_pose)
+    if not inverse:
+        grasp(str_cat("T", str(index+1)))
+    else:
+        grasp(str_cat("T", str(3-index+1)))
+    end
+    movel(approach)
+end
+
+def place(pose, index):
+    place_pose = pose_add(pose, p[0, 0, index * tire_height, 0, 0, 0])
+    approach = pose_add(place_pose, p[0, 0, 0.2, 0, 0, 0])
+    movel(approach)
+    movel(place_pose)
+    release()
+    movel(approach)
+end
+
+# simulator functions
+def grasp(object=None,distance=10000) -> bool:
+    """
+    Simulate gripper closure in roboDK simulator. Closest object is attached to active tooles.
+    :return: bool - True if an object is grasped, False otherwise.
+    """
+    rdk = robodk.robolink.Robolink()
+    if rdk is not None:
+        tool = rdk.Item("Tool")
+        if tool is not None:
+            if object is not None:
+                itm = rdk.Item(object)
+                item = tool.AttachClosest(tolerance_mm=distance,list_objects=[itm])
+            else:
+                item = tool.AttachClosest(tolerance_mm=distance)
+            return item.Valid()
+    return False
+
+
+def release():
+    rdk = robodk.robolink.Robolink()
+    if rdk is not None:
+        tool = rdk.Item("Tool")
+        if tool is not None:
+            tool.DetachAll()
+
+# motions sequence
+i = 3
+while i >= 0:
+    movej(home_pose_right)
+    pick(pose_right, i)
+    movej(pose_center)
+    movej(home_pose_left)
+    place(pose_left, 3-i)
+    i = i - 1
+end
+
+i = 3
+while i >= 0:
+    movej(home_pose_left)
+    pick(pose_left, i, inverse=True)
+    movej(pose_center)
+    movej(home_pose_right)
+    place(pose_right, 3-i)
+    i = i - 1
+end
