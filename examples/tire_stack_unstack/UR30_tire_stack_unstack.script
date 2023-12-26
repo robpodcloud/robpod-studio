@@ -14,9 +14,9 @@ def pick(pose, index, inverse=False):
     movel(approach)
     movel(pick_pose)
     if not inverse:
-        grasp(str_cat("T", str(index+1)))
+        sim_grasp(str_cat("T", str(index+1)))
     else:
-        grasp(str_cat("T", str(3-index+1)))
+        sim_grasp(str_cat("T", str(3-index+1)))
     end
     movel(approach)
 end
@@ -26,35 +26,9 @@ def place(pose, index):
     approach = pose_add(place_pose, p[0, 0, 0.2, 0, 0, 0])
     movel(approach)
     movel(place_pose)
-    release()
+    sim_release()
     movel(approach)
 end
-
-# simulator functions
-def grasp(object=None,distance=10000) -> bool:
-    """
-    Simulate gripper closure in roboDK simulator. Closest object is attached to active tooles.
-    :return: bool - True if an object is grasped, False otherwise.
-    """
-    rdk = robodk.robolink.Robolink()
-    if rdk is not None:
-        tool = rdk.Item("Tool")
-        if tool is not None:
-            if object is not None:
-                itm = rdk.Item(object)
-                item = tool.AttachClosest(tolerance_mm=distance,list_objects=[itm])
-            else:
-                item = tool.AttachClosest(tolerance_mm=distance)
-            return item.Valid()
-    return False
-
-
-def release():
-    rdk = robodk.robolink.Robolink()
-    if rdk is not None:
-        tool = rdk.Item("Tool")
-        if tool is not None:
-            tool.DetachAll()
 
 # motions sequence
 i = 3

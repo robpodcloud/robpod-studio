@@ -1,0 +1,35 @@
+# UR Square Script
+
+# variables
+r = 40
+rep = 2
+loop = False
+counter = 0
+
+# positions (can be defined also as installation variables to keep their last value)
+global pa = p[0.6, 0, 0.2, 3.14, 0.00, 0.00]
+global pb = p[0.6, 0.2, 0.2, 3.14, 0.00, 0.00]
+global pc = p[0.4, 0.2, 0.2, 3.14, 0.00, 0.00]
+global pd = p[0.4, 0, 0.2, 3.14, 0.00, 0.00]
+
+# functions
+def move_square():
+    movel(pa, r=r/1000)
+    movel(pb, r=r/1000)
+    movel(pc, r=r/1000)
+    movel(pd, r=r/1000)
+end
+
+def square_task():
+    if loop:
+        i = 0
+        while i < rep:
+            move_square()
+            i = i + 1
+            counter = i
+        end
+    else:
+        move_square()
+   end
+end
+
