@@ -1,0 +1,33 @@
+# approach position
+movej([1.22, -2.48, -1.61, -0.62, 1.57, -0.35])
+
+# pick position
+movel(p[0.516, 0.828, -0.201, 3.14, -0.00, 0.00])
+
+# simulation command to grasp and attach "box" object to robot tool
+sim_grasp("box")
+
+# retract position
+movel(p[0.519, 0.830, -0.038, -3.14, 0.00, -0.00])
+
+# approach position
+movel(p[-0.554, 0.830, -0.040, -3.14, 0.00, -0.00])
+
+# place position
+movel(p[-0.554, 0.831, -0.183, -3.14, 0.00, -0.00])
+
+# simulation command to release all attached objects from robot tool
+sim_release()
+movej([2.36, -2.21, -1.45, -1.05, 1.57, 0.79])
+
+# retract position
+movel(p[-0.554, 0.830, -0.040, -3.14, 0.00, -0.00])
+
+# same cycle in opposite oreder
+movel(p[-0.554, 0.831, -0.183, -3.14, 0.00, -0.00])
+sim_grasp("box")
+movel(p[-0.554, 0.830, -0.040, -3.14, 0.00, -0.00])
+movej([1.22, -2.48, -1.61, -0.62, 1.57, -0.35])
+movel(p[0.516, 0.828, -0.201, 3.14, -0.00, 0.00])
+sim_release()
+movel(p[0.519, 0.830, -0.038, -3.14, 0.00, -0.00])
