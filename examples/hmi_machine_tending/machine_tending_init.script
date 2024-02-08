@@ -1,0 +1,61 @@
+# variables
+task_running = False
+empty_feeder = True
+
+picking = False
+loading = False
+machining = False
+unloading = False
+placing = False
+
+cycle_counter = 0
+
+# I/O MAPPING
+DOOR_OUT = 2
+CHUCK_OUT = 4
+CYCLE_OUT = 6
+
+# functions
+def cycle_completed():
+	picking = False
+    loading = False
+    machining = False
+    unloading = False
+    placing = False
+end
+
+def get_robot_status():
+    if task_running:
+        return "RUNNING"
+    else:
+        if empty_feeder:
+    	    return "READY"
+        else:
+            return "COMPLETED"
+        end
+    end
+end
+
+def get_door_status():
+    if get_standard_digital_out(DOOR_OUT):
+    	return "OPEN"
+    else:
+        return "CLOSE"
+    end
+end
+
+def get_chuck_status():
+    if get_standard_digital_out(CHUCK_OUT):
+    	return "OPEN"
+    else:
+        return "CLOSE"
+    end
+end
+
+def get_cycle_status():
+    if get_standard_digital_out(CYCLE_OUT):
+    	return "STARTED"
+    else:
+        return "STOPPED"
+    end
+end
