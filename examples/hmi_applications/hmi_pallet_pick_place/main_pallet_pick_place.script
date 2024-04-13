@@ -1,0 +1,9 @@
+# main loop program
+i = 0
+while i < 9:
+    home()
+    pick()
+    buffer()
+    place()
+    i = i + 1
+end
