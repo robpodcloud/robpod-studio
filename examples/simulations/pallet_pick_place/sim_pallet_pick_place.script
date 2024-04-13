@@ -1,0 +1,75 @@
+# pick and place simulation on two pallets
+picking = False
+placing = False
+buffering = False
+
+pick_status = [True, True, True, True, True, True, True, True, True]
+place_status = [False, False, False, False, False, False, False, False, False]
+
+# positions on the pallets
+pick_positions = [p[0.393, -0.755, 0.391, -2.22, 2.22, 0.00],
+                  p[-0.177, -0.553, 0.391, -0.00, 3.14, 0.00],
+                  p[-0.177, -0.956, 0.391, -0.00, 3.14, 0.00],
+                  p[0.195, -0.553, -0.010, -0.00, 3.14, 0.00],
+                  p[0.195, -0.956, -0.010, -0.00, 3.14, 0.00],
+                  p[-0.375, -0.754, -0.010, -2.22, 2.22, 0.00],
+                  p[-0.164, -0.956, -0.412, -0.00, 3.14, -0.00],
+                  p[-0.164, -0.568, -0.412, -0.00, 3.14, 0.00],
+                  p[0.394, -0.766, -0.412, -2.22, 2.22, 0.00]]
+
+
+place_positions = [p[0.393, 0.755, -0.409, -2.22, 2.22, -0.00],
+                  p[-0.177, 0.553, -0.409, -0.00, 3.14, 0.00],
+                  p[-0.177, 0.956, -0.409, -0.00, 3.14, 0.00],
+                  p[0.195, 0.553, -0.010, -0.00, 3.14, 0.00],
+                  p[0.195, 0.956, -0.010, -0.00, 3.14, 0.00],
+                  p[-0.375, 0.754, -0.010, -2.22, 2.22, 0.00],
+                  p[-0.164, 0.956, 0.388, -0.00, 3.14, -0.00],
+                  p[-0.164, 0.568, 0.388, -0.00, 3.14, 0.00],
+                  p[0.394, 0.766, 0.388, -2.22, 2.22, 0.00]]
+
+# motion functions
+def pick():
+    picking = True
+    placing = False
+    buffering = False
+    pick_status[i] = False
+
+    movej(pose_trans(pick_positions[i], p[0, 0, -0.6, 0, 0, 0]))
+    movel(pick_positions[i])
+    sim_grasp(str_cat("Box", to_str(i)))
+    movel(pose_trans(pick_positions[i], p[0, 0, -0.6, 0, 0, 0]))
+end
+
+def place():
+    picking = False
+    placing = True
+    buffering = False
+    place_status[i] = True
+
+    movej(pose_trans(place_positions[i], p[0, 0, -0.5, 0, 0, 0]))
+    movel(place_positions[i])
+    sim_release()
+    movel(pose_trans(place_positions[i], p[0, 0, -0.5, 0, 0, 0]))
+end
+
+def buffer():
+    picking = False
+    placing = False
+    buffering = True
+    movej([0.08, -1.86, -1.40, -1.45, 1.57, 0.08])
+end
+
+def home():
+    movej([0.08, -1.86, -1.40, -1.45, 1.57, 0.08])
+end
+
+# main loop program
+i = 0
+while i < 9:
+    home()
+    pick()
+    buffer()
+    place()
+    i = i + 1
+end
