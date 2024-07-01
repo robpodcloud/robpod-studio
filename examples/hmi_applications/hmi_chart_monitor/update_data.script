@@ -1,0 +1,88 @@
+# joints values
+j1 = 0
+j2 = 0
+j3 = 0
+j4 = 0
+j5 = 0
+j6 = 0
+
+# TCP position
+x = 0
+y = 0
+z = 0
+
+# joints torque
+t1 = 0
+t2 = 0
+t3 = 0
+t4 = 0
+t5 = 0
+t6 = 0
+
+# joints motor temperature
+temp1 = 0.0
+temp2 = 0.0
+temp3 = 0.0
+temp4 = 0.0
+temp5 = 0.0
+temp6 = 0.0
+
+# controller outputs
+o1 = 0
+o2 = 0
+o3 = 0
+o4 = 0
+
+# controller temperature
+controller_tmp = 0
+
+def bool_to_int(val):
+    if val:
+        return 1
+    else:
+        return 0
+    end
+end
+
+# update thread
+thread update():
+    while True:
+        joints = get_actual_joint_positions()
+        j1 = joints[0]
+        j2 = joints[1]
+        j3 = joints[2]
+        j4 = joints[3]
+        j5 = joints[4]
+        j6 = joints[5]
+
+    	tcp = get_actual_tcp_pose()
+    	x = tcp[0]
+    	y = tcp[1]
+    	z = tcp[2]
+
+    	torques = get_joint_torques()
+    	t1 = norm(torques[0])
+        t2 = norm(torques[1])
+        t3 = norm(torques[2])
+        t4 = norm(torques[3])
+        t5 = norm(torques[4])
+        t6 = norm(torques[5])
+
+        temp1 = get_joint_temp(0)
+        temp2 = get_joint_temp(1)
+        temp3 = get_joint_temp(2)
+        temp4 = get_joint_temp(3)
+        temp5 = get_joint_temp(4)
+        temp6 = get_joint_temp(5)
+
+        o1 = bool_to_int(get_standard_digital_out(0))+6
+        o2 = bool_to_int(get_standard_digital_out(1))+4
+        o3 = bool_to_int(get_standard_digital_out(2))+2
+        o4 = bool_to_int(get_standard_digital_out(3))+0
+
+        controller_tmp = get_controller_temp()
+        sync()
+    end
+end
+
+run update()
