@@ -1,0 +1,50 @@
+# variables can also be defined as installation variables to keep in memory their last value
+square_count = 0
+triangle_count = 0
+circle_count = 0
+square_target = 0
+triangle_target = 0
+circle_target = 0
+
+# production task for every different format
+def square_task():
+    square_count = square_count + 1
+    sleep(1)
+end
+
+def triangle_task():
+    triangle_count = triangle_count + 1
+    sleep(1)
+end
+
+def circle_task():
+    circle_count = circle_count + 1
+    sleep(1)
+end
+
+# main production task
+def start_task():
+    while square_count < square_target or triangle_count < triangle_target or circle_count < circle_target:
+    	if square_count < square_target:
+            square_task()
+	    end
+
+	    if triangle_count < triangle_target:
+            triangle_task()
+	    end
+
+	    if circle_count < circle_target:
+            circle_task()
+	    end
+    end
+end
+
+# restore variables to initial values
+def reset_task():
+    square_count = 0
+    triangle_count = 0
+    circle_count = 0
+    square_target = 0
+    triangle_target = 0
+    circle_target = 0
+end
