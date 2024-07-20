@@ -1,0 +1,146 @@
+# PALLET APP - variables
+# variables and features marked with INSTALLATION tag should be removed from script and defined as
+# installation variables in order to keep in memory their last value
+
+# pallet setup
+rows = 2 #INSTALLATION
+columns = 4 #INSTALLATION
+layers = 8 #INSTALLATION
+
+LEFT_PALLET = "LEFT PALLET"
+RIGHT_PALLET = "RIGHT PALLET"
+selected_pallet = LEFT_PALLET #INSTALLATION
+
+LEFT_PALLET_FEATURE = p[-0.580, 0.528, -0.860, 0, 0, 0] #INSTALLATION
+RIGHT_PALLET_FEATURE = p[0.580, -0.528, -0.860, 0, 0, 3.1415] #INSTALLATION
+pallet_feature = LEFT_PALLET_FEATURE
+
+# box setup
+box_length = 300 #INSTALLATION
+box_width = 400 #INSTALLATION
+box_height = 200 #INSTALLATION
+
+PICK_FEATURE = p[-0.860, -0.211, -0.350, 0, 0, 1.571] #INSTALLATION
+
+# start from setup
+FIRST_BOX = "FIRST BOX"
+CURRENT_BOX = "CURRENT BOX"
+BOX_AT = "BOX AT"
+start_from = FIRST_BOX
+
+start_row = 0
+start_column = 0
+start_layer = 0
+
+# pallet state
+current_row = 0 #INSTALLATION
+current_column = 0 #INSTALLATION
+current_layer = 0 #INSTALLATION
+
+# PALLET APP - functions
+def get_pick_pose():
+    x = box_length * 0.0005
+    y = box_width * 0.0005
+    z = box_height * 0.001
+    return pose_trans(PICK_FEATURE, p[x, y, z, 0, 3.1415, 0])
+end
+
+def get_place_pose():
+    x = box_length * 0.0005 + current_column * box_length * 0.001
+    y = box_width * 0.0005 + current_row * box_width * 0.001
+    z = box_height * 0.001 + current_layer * box_height * 0.001
+    return pose_trans(pallet_feature, p[x, y, z, 0, 3.1415, 0])
+end
+
+def get_approach_pose(pose, offset=[0, 0, 0]):
+    return pose_add(pose, p[offset[0], offset[1], offset[2], 0, 0, 0])
+end
+
+# PALLET APP - tool functions
+# implement these function with logic to operate your gripper
+def grasp():
+
+end
+
+def release():
+
+end
+
+
+# PALLET APP - main function
+def start_task():
+    # start from condition
+    if start_from == FIRST_BOX:
+        current_row = 0
+        current_column = 0
+        current_layer = 0
+    elif start_from == BOX_AT:
+        current_row = start_row - 1
+        current_column = start_column - 1
+        current_layer = start_layer - 1
+    else:
+        current_row = current_row
+        current_column = current_column
+        current_layer = current_layer
+    end
+
+    # selected pallet condition
+    if selected_pallet == LEFT_PALLET:
+        pallet_feature = LEFT_PALLET_FEATURE
+    else:
+        pallet_feature = RIGHT_PALLET_FEATURE
+    end
+
+    # iteration over layers, columns and rows
+    while current_layer < layers:
+        while current_column < columns:
+            while current_row < rows:
+                # pick action
+                pick_pose = get_pick_pose()
+                approach_pose = get_approach_pose(pick_pose, offset=[0, 0, 0.1])
+                current_pose = get_actual_tcp_pose()
+
+                if approach_pose[2] < current_pose[2] + 0.05:
+                    approach_pose[2] = current_pose[2] + 0.05
+                end
+
+                movej(approach_pose)
+                movel(pick_pose)
+
+                grasp()
+
+                place_pose = get_place_pose()
+                place_approach_pose = get_approach_pose(place_pose, offset=[0.1, 0.1, box_height * 0.001 + 0.05])
+
+                if place_approach_pose[2] > PICK_FEATURE[2] +  box_height * 0.001 + 0.05:
+                    approach_pose[2] = place_approach_pose[2]
+                end
+
+                movel(approach_pose)
+
+                # place action
+                place_pose = get_place_pose()
+                approach_pose = get_approach_pose(place_pose, offset=[0.1, 0.1, box_height * 0.001 + 0.05])
+                movej(approach_pose)
+                movel(place_pose)
+
+                release()
+
+                approach_pose = get_approach_pose(place_pose, offset=[0, 0, 0.1])
+                if approach_pose[2] < PICK_FEATURE[2] +  box_height * 0.001 + 0.05:
+                    approach_pose[2] = PICK_FEATURE[2] +  box_height * 0.001 + 0.05
+                end
+
+                movel(approach_pose)
+                current_row = current_row + 1
+            end
+
+            current_row = 0
+            current_column = current_column + 1
+        end
+
+        current_row = 0
+        current_column = 0
+        current_layer = current_layer + 1
+    end
+end
