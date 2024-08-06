@@ -1,0 +1,109 @@
+# QA result for each part
+label_ok = False
+break_ok = False
+mirror_ok = False
+handle_ok = False
+door_ok = False
+hinge_ok = False
+
+# user choice - selected part will be inspected
+check_label = False
+check_break = False
+check_mirror = False
+check_handle = False
+check_door = False
+check_hinge = False
+
+home = [1.54, -1.21, -1.91, -3.17, -0.03, -3.14]
+
+# inspection function for each part
+def qa_label():
+    movej([0.50, -0.95, -2.46, -2.87, -1.07, -3.14])
+    movel(p[0.401, -0.560, 0.513, -1.21, 1.21, -1.21])
+    movel(p[0.401, -0.060, 0.513, -1.20, 1.21, -1.21])
+    movel(home)
+end
+
+def qa_break():
+    movel(p[0.398, -0.921, 0.203, -1.20, 1.21, -1.22])
+    p1 = p[0.391, -1.060, 0.083, -1.20, 1.21, -1.21]
+    p2 = p[0.381, -0.890, -0.037, -1.20, 1.21, -1.21]
+    movec(p1, p2)
+
+    p3 = p[0.381, -0.710, 0.133, -1.20, 1.21, -1.21]
+    p4 = p[0.381, -0.920, 0.283, -1.20, 1.21, -1.21]
+    movec(p3, p4)
+    movel(home)
+end
+
+def qa_mirror():
+    movej([0.99, -1.96, -0.72, -3.57, 1.18, 0.01])
+    movel(p[0.646, 0.369, 0.775, 1.59, -0.17, -0.12])
+    movel(p[0.531, 0.388, 0.773, 1.59, -0.17, -0.13])
+    movej(home)
+end
+
+def qa_handle():
+    movej([1.55, -2.10, -1.22, -2.97, -0.02, -3.14])
+    movel(p[0.342, 1.079, 0.592, -1.21, 1.21, -1.21])
+    movel(p[0.339, 0.867, 0.593, -1.21, 1.21, -1.21])
+    movej(home)
+end
+
+def qa_door():
+    movej([1.53, -2.36, -0.50, -3.42, -0.45, -3.14])
+    movel(p[0.353, 1.035, 0.241, -1.38, 0.90, -0.91])
+    movel(p[0.343, 0.675, 0.241, -1.54, 1.53, -0.91])
+    movel(p[0.343, 0.205, 0.241, -1.44, 1.76, -1.22])
+    movej(home)
+end
+
+def qa_hinge():
+    movej([1.53, -2.36, -0.50, -3.42, -0.45, -3.14])
+    movel(p[0.343, 0.675, 0.241, -1.54, 1.53, -0.91])
+    movel(p[0.343, 0.205, 0.241, -1.44, 1.76, -1.22])
+    movej(home)
+end
+
+# main function
+def start_task():
+    label_ok = False
+    break_ok = False
+    mirror_ok = False
+    handle_ok = False
+    door_ok = False
+    hinge_ok = False
+
+    movej(home)
+
+    if check_label:
+    	qa_label()
+    	label_ok = True
+    end
+
+    if check_break:
+        qa_break()
+        break_ok = True
+    end
+
+    if check_mirror:
+        qa_mirror()
+        mirror_ok = True
+    end
+
+    if check_handle:
+        qa_handle()
+        handle_ok = True
+    end
+
+    if check_door:
+        qa_door()
+        door_ok = True
+    end
+
+    if check_hinge:
+        qa_hinge()
+        hinge_ok = True
+    end
+end
+
