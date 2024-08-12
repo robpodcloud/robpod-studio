@@ -1,0 +1,120 @@
+# HMI input variables
+approach = 100
+contact_pose = p[-0.190, -0.610, 0.061, -0.00, 3.12, 0.04]
+contact_force = 20
+insertion_pose = p[-0.190, -0.610, 0.061, -0.00, 3.12, 0.04]
+push_force = 30
+step = 10
+
+pick_pose = p[-0.189, -0.611, 0.240, -0.00, 3.11, 0.04]
+threshold = 0.004
+thread_running = False
+
+# status variables
+READY = 0
+PICK = 1
+APPROACH = 2
+CONTACT = 3
+SPIRAL = 4
+INSERT = 5
+ASSEMBLED = 6
+status = READY
+
+# thread functions for async movements
+thread move_to_insert():
+    movel(insertion_pose, v=0.02)
+    thread_running = False
+end
+
+thread move_spiral():
+    start_radius = 0.01
+    center_pose = get_actual_tcp_pose()
+    rotations = 10
+
+    movel(center_pose)
+    i = 0
+    while i < rotations:
+        r = start_radius + i*step/1000
+        p1 = pose_trans(center_pose, p[r, 0, 0, 0, 0, 0])
+        p2 = pose_trans(center_pose, p[0, r, 0, 0, 0, 0])
+        movec(p1, p2, r=0.01)
+
+        p3 = pose_trans(center_pose, p[-r, 0, 0, 0, 0, 0])
+        p4 = pose_trans(center_pose, p[0, -r, 0, 0, 0, 0])
+        movec(p3, p4, r=0.01)
+
+        i = i + 1
+    end
+end
+
+# gripper functions
+def grasp():
+
+end
+
+def release():
+
+end
+
+def pick():
+    status = PICK
+    approach_pose = pose_trans(pick_pose, p[0, 0, -approach/1000, 0, 0, 0])
+    movel(approach_pose)
+    movel(pick_pose)
+    grasp()
+    movel(approach_pose)
+end
+
+def assembly():
+    # approach
+    status = APPROACH
+    approach_pose = pose_trans(insertion_pose, p[0, 0, -approach/1000, 0, 0, 0])
+    movel(approach_pose)
+
+    # detect contact
+    status = CONTACT
+    thread_completed = False
+    thread_id = run move_to_insert()
+    while force() < contact_force and thread_running:
+        sleep(0.1)
+    end
+    if thread_running:
+        kill thread_id
+    end
+    stopl(0.5)
+
+    # move spiral
+    status = SPIRAL
+    force_mode(p[0, 0, 0, 0, 0,0], [0, 0, 1, 0, 0, 0], [0, 0, -push_force, 0 , 0, 0], 2, [40, 40, 40, 5, 5, 5])
+    thread_completed = False
+    thread_id = run move_spiral()
+    while get_actual_tcp_pose()[2] > contact_pose[2] - threshold and thread_running:
+        sleep(0.1)
+    end
+    if thread_running:
+        kill thread_id
+    end
+    stopl(0.5)
+    end_force_mode()
+
+    # insert
+    status = INSERT
+    current_pose = get_actual_tcp_pose()
+    current_pose[2] = insertion_pose[2]
+    movel(insertion_pose)
+    release()
+
+    # retract
+    status = ASSEMBLED
+    retract_pose = pose_trans(get_actual_tcp_pose(), p[0, 0, -approach/1000, 0, 0, 0])
+    movel(retract_pose)
+end
+
+# main function
+def start_task():
+    status = READY
+    pick()
+    assembly()
+end
+
+
