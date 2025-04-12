@@ -1,7 +1,7 @@
 ![image](https://www.robpod.cloud/wp-content/uploads/2022/09/robpod-studio-logo.png)
 
 Integrated Development Environment for **Collaborative Robotics** applications based on [PyCharm](https://www.jetbrains.com/pycharm/) platform.
-**Robpod Studio** makes [Universal Robots](https://www.universal-robots.com/) scripting fast, easy and flexible.
+**Robpod Studio** makes [Universal Robots](https://www.universal-robots.com/) and [Doosan Robotics](https://www.doosanrobotics.com/en) scripting fast, easy and flexible.
 
 Visit [Robpod Cloud](https://www.robpod.cloud/) to download Robpod Studio and find for more info.
 
