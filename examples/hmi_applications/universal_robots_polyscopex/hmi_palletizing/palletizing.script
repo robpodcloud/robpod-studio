@@ -1,0 +1,241 @@
+# PALLETIZING APP
+# variables and features marked with APPLICATION tag should be removed from script and defined as
+# application variables in order to store their last assigned value after program restart
+
+# --- Variables ---
+
+# box setup
+box_length = 300 #APPLICATION
+box_width = 400 #APPLICATION
+box_height = 200 #APPLICATION
+
+# pallet setup
+rows = 2 #APPLICATION
+columns = 4 #APPLICATION
+layers = 8 #APPLICATION
+
+# pallet sides
+A = "A"
+B = "B"
+selected_pallet = A #APPLICATION
+
+completed_A = False #APPLICATION
+completed_B = False #APPLICATION
+enabled_A = True #APPLICATION
+enabled_B = True #APPLICATION
+
+COMPLETED = "COMPLETED"
+DISABLED = "DISABLED"
+MISSING = "MISSING"
+AVAILABLE = "AVAILABLE"
+
+# features
+A_FEATURE = p[-0.580, 0.528, -0.860, 0, 0, 0] #APPLICATION
+B_FEATURE = p[0.580, -0.528, -0.860, 0, 0, 3.1415] #APPLICATION
+pallet_feature = A_FEATURE
+
+BOX_FEATURE = p[-0.860, -0.211, -0.350, 0, 0, 1.571] #APPLICATION
+
+# start condition
+start_row = 1 #APPLICATION
+start_column = 1 #APPLICATION
+start_layer = 1 #APPLICATION
+
+# stats
+tot_boxes = 0
+current_boxes = 0
+remaining_boxes = 0
+box_counter = "" + "/" + ""
+cycle_time = 10
+remaining_time = 0
+
+# state variables
+repeat = False
+running = False
+stopping = False
+
+# --- Functions ---
+def get_pick_pose():
+    x = box_length * 0.0005
+    y = box_width * 0.0005
+    z = box_height * 0.001
+    return pose_trans(BOX_FEATURE, p[x, y, z, 0, 3.1415, 0])
+end
+
+def get_place_pose(column, row, layer):
+    x = box_length * 0.0005 + column * box_length * 0.001
+    y = box_width * 0.0005 + row * box_width * 0.001
+    z = box_height * 0.001 + layer * box_height * 0.001
+    return pose_trans(pallet_feature, p[x, y, z, 0, 3.1415, 0])
+end
+
+def get_approach_pose(pose, offset=[0, 0, 0]):
+    return pose_add(pose, p[offset[0], offset[1], offset[2], 0, 0, 0])
+end
+
+def get_pallet_a_status():
+    if completed_A:
+    	return COMPLETED
+    elif get_standard_digital_in(1):
+        return MISSING
+    elif not enabled_A:
+        return DISABLED
+    else:
+        return AVAILABLE
+    end
+end
+
+def get_pallet_b_status():
+    if completed_B:
+    	return COMPLETED
+    elif get_standard_digital_in(2):
+        return MISSING
+    elif not enabled_B:
+        return DISABLED
+    else:
+        return AVAILABLE
+    end
+end
+
+def can_start_task():
+    return (selected_pallet == A and get_pallet_a_status() == AVAILABLE) or (selected_pallet == B and get_pallet_b_status() == AVAILABLE)
+end
+
+
+# --- Tool Functions ---
+# implement these function with logic to operate your gripper
+def grasp():
+    sleep(2)
+end
+
+def release():
+    sleep(2)
+end
+
+
+# --- Main Functions ---
+def start_task():
+    running = True
+
+    # start condition
+    row = start_row - 1
+    column = start_column - 1
+    layer = start_layer - 1
+
+    # iteration over layers, columns and rows
+    while layer < layers:
+        while column < columns:
+            while row < rows:
+
+                # check stop request
+                if stopping:
+                	stopping = False
+                	running = False
+                	return 0
+                end
+
+                # update starting condition
+                start_row = row + 1
+                start_column = column + 1
+                start_layer = layer + 1
+
+                # stats
+                tot_boxes = rows * columns * layers
+                current_boxes = row + column * rows + layer * rows * columns
+                box_counter = to_str(current_boxes) + " / "+ to_str(tot_boxes)
+                remaining_boxes = tot_boxes - current_boxes
+                start_time = time()
+                remaining_time = remaining_boxes * cycle_time
+
+                # pick action
+                pick_pose = get_pick_pose()
+                approach_pose = get_approach_pose(pick_pose, offset=[0, 0, 0.1])
+                current_pose = get_actual_tcp_pose()
+
+                if approach_pose[2] < current_pose[2] + 0.05:
+                    approach_pose[2] = current_pose[2] + 0.05
+                end
+
+                #movej(approach_pose)
+                #movel(pick_pose)
+
+                grasp()
+
+                place_pose = get_place_pose(column, row, layer)
+                place_approach_pose = get_approach_pose(place_pose, offset=[0.1, 0.1, box_height * 0.001 + 0.05])
+
+                if place_approach_pose[2] > BOX_FEATURE[2] +  box_height * 0.001 + 0.05:
+                    approach_pose[2] = place_approach_pose[2]
+                end
+
+                #movel(approach_pose)
+
+                # place action
+                approach_pose = get_approach_pose(place_pose, offset=[0.1, 0.1, box_height * 0.001 + 0.05])
+                #movej(approach_pose)
+                #movel(place_pose)
+
+                release()
+
+                approach_pose = get_approach_pose(place_pose, offset=[0, 0, 0.1])
+                if approach_pose[2] < BOX_FEATURE[2] +  box_height * 0.001 + 0.05:
+                    approach_pose[2] = BOX_FEATURE[2] +  box_height * 0.001 + 0.05
+                end
+
+                #movel(approach_pose)
+                row = row + 1
+
+                # stats
+                cycle_time = time().sec - start_time.sec
+                remaining_time = remaining_boxes * cycle_time
+            end
+
+            row = 0
+            column = column + 1
+        end
+
+        row = 0
+        column = 0
+        layer = layer + 1
+    end
+
+    if selected_pallet == A:
+        completed_A = True
+    else:
+        completed_B = True
+    end
+
+    # start condition
+    start_row = 1
+    start_column = 1
+    start_layer = 1
+
+    # stats
+    tot_boxes = rows * columns * layers
+    current_boxes = row + column * rows + layer * rows * columns
+    box_counter = to_str(current_boxes) + " / "+ to_str(tot_boxes)
+    remaining_boxes = tot_boxes - current_boxes
+
+    # check repeat condition
+    if repeat:
+        if selected_pallet == A and get_pallet_b_status() == AVAILABLE:
+        	selected_pallet = B
+        	start_task()
+        elif selected_pallet == B and get_pallet_a_status() == AVAILABLE:
+        	selected_pallet = A
+        	start_task()
+        end
+    end
+
+    running = False
+end
+
+
+def stop_task():
+    stopping = True
+    while stopping:
+    	sleep(1)
+    end
+end
+
+

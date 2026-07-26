@@ -1,0 +1,85 @@
+status = "READY"
+good = 230
+discarded = 13
+cycle_time = 0
+target = 560
+parts = ["P-CL-5055", "P230", "P-FS-6060", "P-GG-5043"]
+machine_programs = ["PROG-CL-5055", "PROG-230", "CC-FS-6060", "MACH-5034"]
+payloads = [2.0, 2.5, 3.0, 1.5]
+selected_part = parts[0]
+
+diameter_raw = 50
+diameter_machined = 30
+
+door_open = True
+
+rows = 3
+columns = 4
+grids = ["3 x 4 Round", "3 x 5 Round", "4 x 5 Square"]
+selected_grid = grids[0]
+
+def get_payload():
+    i = 0
+    while i < length(parts):
+    	if selected_part == parts[i]:
+            return payloads[i]
+    	end
+    	i = i + 1
+    end
+	return 0.0
+end
+
+def get_machine_program():
+    i = 0
+    while i < length(parts):
+    	if selected_part == parts[i]:
+            return machine_programs[i]
+    	end
+    	i = i + 1
+    end
+	return ""
+end
+
+def get_grid():
+    i = 0
+    while i < length(grids):
+    	if selected_grid == grids[i]:
+            return grids[i]
+    	end
+    	i = i + 1
+    end
+	return ""
+end
+
+def load_grid():
+    rows = to_num(str_sub(selected_grid,0,1))
+    columns = to_num(str_sub(selected_grid,4,1))
+end
+
+def pick():
+	status = "PICKING"
+	sleep(2)
+end
+
+def load():
+	status = "LOADING"
+	sleep(2)
+end
+
+def place():
+	status = "PLACING"
+	sleep(2)
+end
+
+def start():
+    while good < target:
+        start_time = time().sec
+        pick()
+        load()
+        place()
+        good = good + 1
+        cycle_time = time().sec - start_time
+    end
+end
+
+textmsg("ciao222")
