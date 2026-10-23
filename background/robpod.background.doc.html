@@ -1,0 +1,3085 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>robpod.background API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>robpod.background</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="robpod.background.OFF"><code class="name">var <span class="ident">OFF</span></code></dt>
+<dd>
+<div class="desc"><p>Constant representing a disabled or LOW digital signal.</p></div>
+</dd>
+<dt id="robpod.background.ON"><code class="name">var <span class="ident">ON</span></code></dt>
+<dd>
+<div class="desc"><p>Constant representing an enabled or HIGH digital signal.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="robpod.background.get_analog_input"><code class="name flex">
+<span>def <span class="ident">get_analog_input</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_input(index):
+    &#34;&#34;&#34;Read the current value of an analog input.
+
+    Args:
+        index (int): Index of the analog input.
+
+    Returns:
+        The current analog input value.
+    &#34;&#34;&#34;
+    return _robot.get_analog_input(index)</code></pre>
+</details>
+<div class="desc"><p>Read the current value of an analog input.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the analog input.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The current analog input value.</p></div>
+</dd>
+<dt id="robpod.background.get_analog_input_mode"><code class="name flex">
+<span>def <span class="ident">get_analog_input_mode</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_input_mode(index):
+    &#34;&#34;&#34;Retrieve the configured mode of an analog input.
+
+    Args:
+        index (int): Index of the analog input.
+
+    Returns:
+        The configured mode, value defined in AnalogMode.
+    &#34;&#34;&#34;
+    return _robot.get_analog_input_mode(index)</code></pre>
+</details>
+<div class="desc"><p>Retrieve the configured mode of an analog input.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the analog input.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The configured mode, value defined in AnalogMode.</p></div>
+</dd>
+<dt id="robpod.background.get_analog_output"><code class="name flex">
+<span>def <span class="ident">get_analog_output</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_output(index):
+    &#34;&#34;&#34;Read the current value of an analog output.
+
+    Args:
+        index (int): Index of the analog output.
+
+    Returns:
+        The current analog output value.
+    &#34;&#34;&#34;
+    return _robot.get_analog_output(index)</code></pre>
+</details>
+<div class="desc"><p>Read the current value of an analog output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the analog output.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The current analog output value.</p></div>
+</dd>
+<dt id="robpod.background.get_analog_output_mode"><code class="name flex">
+<span>def <span class="ident">get_analog_output_mode</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_output_mode(index):
+    &#34;&#34;&#34;Retrieve the configured mode of an analog output.
+
+    Args:
+        index (int): Index of the analog output.
+
+    Returns:
+        The configured mode, a value defined in AnalogMode.
+    &#34;&#34;&#34;
+    return _robot.get_analog_output_mode(index)</code></pre>
+</details>
+<div class="desc"><p>Retrieve the configured mode of an analog output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the analog output.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The configured mode, a value defined in AnalogMode.</p></div>
+</dd>
+<dt id="robpod.background.get_configurable_digital_input"><code class="name flex">
+<span>def <span class="ident">get_configurable_digital_input</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_configurable_digital_input(index):
+    &#34;&#34;&#34;Read the state of a configurable digital input.
+
+        Args:
+            index (int): Index of the configurable digital input.
+
+        Returns:
+            bool: True if the input is ON, False if it is OFF.
+    &#34;&#34;&#34;
+    return _robot.get_digital_input(index)</code></pre>
+</details>
+<div class="desc"><p>Read the state of a configurable digital input.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the configurable digital input.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if the input is ON, False if it is OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_configurable_digital_output"><code class="name flex">
+<span>def <span class="ident">get_configurable_digital_output</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_configurable_digital_output(index):
+    &#34;&#34;&#34;Read the state of a configurable digital output.
+
+        Args:
+            index (int): Index of the configurable digital output.
+
+        Returns:
+            bool: True if the output is ON, False if it is OFF.
+    &#34;&#34;&#34;
+    return _robot.get_configurable_digital_output(index)</code></pre>
+</details>
+<div class="desc"><p>Read the state of a configurable digital output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the configurable digital output.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if the output is ON, False if it is OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_digital_input"><code class="name flex">
+<span>def <span class="ident">get_digital_input</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_digital_input(index):
+    &#34;&#34;&#34;Read the state of a digital input.
+
+    Args:
+        index (int): Index of the digital input.
+
+    Returns:
+        bool: True if the input is ON, False if it is OFF.
+    &#34;&#34;&#34;
+    return _robot.get_digital_input(index)</code></pre>
+</details>
+<div class="desc"><p>Read the state of a digital input.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the digital input.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if the input is ON, False if it is OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_digital_output"><code class="name flex">
+<span>def <span class="ident">get_digital_output</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_digital_output(index):
+    &#34;&#34;&#34;Read the state of a digital output.
+
+    Args:
+        index (int): Index of the digital output.
+
+    Returns:
+        bool: True if the output is ON, False if it is OFF.
+    &#34;&#34;&#34;
+    return _robot.get_digital_output(index)</code></pre>
+</details>
+<div class="desc"><p>Read the state of a digital output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the digital output.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if the output is ON, False if it is OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_joint_pose"><code class="name flex">
+<span>def <span class="ident">get_joint_pose</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_joint_pose():
+    &#34;&#34;&#34;Retrieve the current robot joint positions.
+
+    Returns:
+        float[6]: The current joint pose, as provided by the robot API.
+    &#34;&#34;&#34;
+    return _robot.get_joint_pose()</code></pre>
+</details>
+<div class="desc"><p>Retrieve the current robot joint positions.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float[6]</code></dt>
+<dd>The current joint pose, as provided by the robot API.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_joint_velocity"><code class="name flex">
+<span>def <span class="ident">get_joint_velocity</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_joint_velocity():
+    &#34;&#34;&#34;Retrieve the current robot joint velocities.
+
+    Returns:
+        float[6]: The current joint velocities.
+    &#34;&#34;&#34;
+    return _robot.get_joint_velocity()</code></pre>
+</details>
+<div class="desc"><p>Retrieve the current robot joint velocities.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float[6]</code></dt>
+<dd>The current joint velocities.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_mode"><code class="name flex">
+<span>def <span class="ident">get_mode</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mode():
+    &#34;&#34;&#34;Get the current robot operational mode: AUTOMATIC, MANUAL, TEACHING.
+
+       Returns:
+           RobotMode: The current operational mode.
+    &#34;&#34;&#34;
+    return _robot.get_mode()</code></pre>
+</details>
+<div class="desc"><p>Get the current robot operational mode: AUTOMATIC, MANUAL, TEACHING.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="robpod.background.RobotMode" href="#robpod.background.RobotMode">RobotMode</a></code></dt>
+<dd>The current operational mode.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_program_name"><code class="name flex">
+<span>def <span class="ident">get_program_name</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_program_name():
+    &#34;&#34;&#34;Retrieve the name of the currently selected or executing program.
+
+    Returns:
+        str: The program name
+    &#34;&#34;&#34;
+    return _robot.get_program_name()</code></pre>
+</details>
+<div class="desc"><p>Retrieve the name of the currently selected or executing program.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>The program name</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_program_state"><code class="name flex">
+<span>def <span class="ident">get_program_state</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_program_state():
+    &#34;&#34;&#34;Get the current program execution state.
+
+    Returns:
+        ProgramStatus: The current program state.
+    &#34;&#34;&#34;
+    return _robot.get_program_state()</code></pre>
+</details>
+<div class="desc"><p>Get the current program execution state.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="robpod.background.ProgramStatus" href="#robpod.background.ProgramStatus">ProgramStatus</a></code></dt>
+<dd>The current program state.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_register"><code class="name flex">
+<span>def <span class="ident">get_register</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_register(index):
+    &#34;&#34;&#34;Read the value of a robot register (modbus).
+
+    Args:
+        index (int): Index of the register to read.
+
+    Returns:
+        int: The current value of the specified register.
+    &#34;&#34;&#34;
+    return _robot.get_register(index)</code></pre>
+</details>
+<div class="desc"><p>Read the value of a robot register (modbus).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the register to read.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>The current value of the specified register.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_state"><code class="name flex">
+<span>def <span class="ident">get_state</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_state():
+    &#34;&#34;&#34;Get the current robot state.
+
+       Returns:
+           RobotStatus: The current robot state.
+    &#34;&#34;&#34;
+    return _robot.get_state()</code></pre>
+</details>
+<div class="desc"><p>Get the current robot state.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="robpod.background.RobotStatus" href="#robpod.background.RobotStatus">RobotStatus</a></code></dt>
+<dd>The current robot state.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_tcp_offset"><code class="name flex">
+<span>def <span class="ident">get_tcp_offset</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_offset():
+    &#34;&#34;&#34;Retrieve the configured offset of the tool center point (TCP).
+
+    Returns:
+        The TCP offset.
+    &#34;&#34;&#34;
+    return _robot.get_tcp_offset()</code></pre>
+</details>
+<div class="desc"><p>Retrieve the configured offset of the tool center point (TCP).</p>
+<h2 id="returns">Returns</h2>
+<p>The TCP offset.</p></div>
+</dd>
+<dt id="robpod.background.get_tcp_pose"><code class="name flex">
+<span>def <span class="ident">get_tcp_pose</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_pose():
+    &#34;&#34;&#34;Retrieve the current tool center point (TCP) pose in base coordinates.
+
+       Returns:
+           float[6]: The current TCP pose.
+       &#34;&#34;&#34;
+    return _robot.get_tcp_pose()</code></pre>
+</details>
+<div class="desc"><p>Retrieve the current tool center point (TCP) pose in base coordinates.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float[6]</code></dt>
+<dd>The current TCP pose.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_tcp_velocity"><code class="name flex">
+<span>def <span class="ident">get_tcp_velocity</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_velocity():
+    &#34;&#34;&#34;Retrieve the current tool center point (TCP) velocity.
+
+    Returns:
+        float[6]: The current TCP velocity.
+    &#34;&#34;&#34;
+    return _robot.get_tcp_velocity()</code></pre>
+</details>
+<div class="desc"><p>Retrieve the current tool center point (TCP) velocity.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float[6]</code></dt>
+<dd>The current TCP velocity.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_tool_digital_input"><code class="name flex">
+<span>def <span class="ident">get_tool_digital_input</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tool_digital_input(index):
+    &#34;&#34;&#34;Read the state of a tool digital input.
+
+    Args:
+        index (int): Index of the tool digital input.
+
+    Returns:
+        bool: True if the input is ON, False if it is OFF.
+    &#34;&#34;&#34;
+    return _robot.get_tool_digital_input(index)</code></pre>
+</details>
+<div class="desc"><p>Read the state of a tool digital input.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the tool digital input.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if the input is ON, False if it is OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.get_tool_digital_output"><code class="name flex">
+<span>def <span class="ident">get_tool_digital_output</span></span>(<span>index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tool_digital_output(index):
+    &#34;&#34;&#34;Read the state of a tool digital output.
+
+    Args:
+        index (int): Index of the tool digital output.
+
+    Returns:
+        bool: True if the output is ON, False if it is OFF.
+    &#34;&#34;&#34;
+    return _robot.get_tool_digital_output(index)</code></pre>
+</details>
+<div class="desc"><p>Read the state of a tool digital output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the tool digital output.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if the output is ON, False if it is OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.log"><code class="name flex">
+<span>def <span class="ident">log</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log(value):
+    &#34;&#34;&#34;Print a message with the current date and time.&#34;&#34;&#34;
+    now = datetime.now()
+    print(now.strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)[:-3]+&#34;: &#34;+str(value))</code></pre>
+</details>
+<div class="desc"><p>Print a message with the current date and time.</p></div>
+</dd>
+<dt id="robpod.background.loop"><code class="name flex">
+<span>def <span class="ident">loop</span></span>(<span>func=None, times=None, delay=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def loop(func=None, times=None, delay=1):
+    &#34;&#34;&#34;Execute a function repeatedly with a delay between executions.
+
+    The decorated function is called repeatedly until the specified
+    number of executions is reached. If times is None, it runs
+    indefinitely.
+
+    This decorator can be used with or without parentheses.
+
+    Args:
+        func (callable, optional): Function to decorate. Usually omitted
+            when passing decorator options.
+        times (int, optional): Number of times to execute the function.
+            If None, the function runs indefinitely. Defaults to None.
+        delay (int | float, optional): Delay in seconds between
+            executions. Defaults to 1.
+
+    Returns:
+        callable: A decorated function that repeatedly executes the
+        wrapped function. Its return value is not propagated.
+
+    Examples:
+        Run a function indefinitely, once per second:
+
+            @loop
+            def monitor_robot():
+                print(get_state())
+
+        Execute a function ten times with a half-second delay:
+
+            @loop(times=10, delay=0.5)
+            def blink_output():
+                set_digital_output(0, ON)
+
+    &#34;&#34;&#34;
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            count = 0
+
+            while times is None or count &lt; times:
+                func(*args, **kwargs)
+                count += 1
+                time.sleep(delay)
+
+        return wrapper
+
+    if func is not None:
+        return decorator(func)
+
+    return decorator</code></pre>
+</details>
+<div class="desc"><p>Execute a function repeatedly with a delay between executions.</p>
+<p>The decorated function is called repeatedly until the specified
+number of executions is reached. If times is None, it runs
+indefinitely.</p>
+<p>This decorator can be used with or without parentheses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>func</code></strong> :&ensp;<code>callable</code>, optional</dt>
+<dd>Function to decorate. Usually omitted
+when passing decorator options.</dd>
+<dt><strong><code>times</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of times to execute the function.
+If None, the function runs indefinitely. Defaults to None.</dd>
+<dt><strong><code>delay</code></strong> :&ensp;<code>int | float</code>, optional</dt>
+<dd>Delay in seconds between
+executions. Defaults to 1.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>callable</code></dt>
+<dd>A decorated function that repeatedly executes the</dd>
+</dl>
+<p>wrapped function. Its return value is not propagated.</p>
+<h2 id="examples">Examples</h2>
+<p>Run a function indefinitely, once per second:</p>
+<pre><code>@loop
+def monitor_robot():
+    print(get_state())
+</code></pre>
+<p>Execute a function ten times with a half-second delay:</p>
+<pre><code>@loop(times=10, delay=0.5)
+def blink_output():
+    set_digital_output(0, ON)
+</code></pre></div>
+</dd>
+<dt id="robpod.background.on"><code class="name flex">
+<span>def <span class="ident">on</span></span>(<span>condition, duration=0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def on(condition, duration=0):
+    &#34;&#34;&#34;Create a rule that triggers once when a condition becomes true.
+
+    The action executes once after the condition has remained true for
+    at least the specified duration. The rule will not trigger again
+    until the condition becomes false and then true again.
+
+    Args:
+        condition (callable): Function returning a truthy or falsy value.
+        duration (float, optional): Minimum continuous time in seconds
+            that the condition must remain true before the action runs.
+            Defaults to 0, meaning the action runs on the first eligible
+            evaluation after the condition becomes true.
+
+    Returns:
+        RuleWithDo: Builder used to configure the action and start the rule.
+
+    Examples:
+        Log once when the robot program enters the running state:
+
+            on(
+                lambda: get_program_state() == ProgramStatus.RUNNING
+            ).do(
+                lambda: log(&#34;RUNNING&#34;)
+            ).start()
+
+        Log once when the program enters the paused state:
+
+            on(
+                lambda: get_program_state() == ProgramStatus.PAUSED
+            ).do(
+                lambda: log(&#34;PAUSED&#34;)
+            ).start()
+
+        Log once when the program enters the stopped state:
+
+            on(
+                lambda: get_program_state() == ProgramStatus.STOPPED
+            ).do(
+                lambda: log(&#34;STOPPED&#34;)
+            ).start()
+
+        Trigger only if the robot remains paused for at least three seconds:
+
+            on(
+                lambda: get_program_state() == ProgramStatus.PAUSED,
+                duration=3,
+            ).do(
+                lambda: log(&#34;Program has been paused for 3 seconds&#34;)
+            ).start()
+
+    Note:
+        The condition is evaluated periodically, so the action may run
+        slightly later than the specified duration due to the polling
+        interval and execution time.
+    &#34;&#34;&#34;
+    rule = Rule(condition, fire_once=True, duration=duration)
+    return RuleWithDo(rule)</code></pre>
+</details>
+<div class="desc"><p>Create a rule that triggers once when a condition becomes true.</p>
+<p>The action executes once after the condition has remained true for
+at least the specified duration. The rule will not trigger again
+until the condition becomes false and then true again.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>condition</code></strong> :&ensp;<code>callable</code></dt>
+<dd>Function returning a truthy or falsy value.</dd>
+<dt><strong><code>duration</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Minimum continuous time in seconds
+that the condition must remain true before the action runs.
+Defaults to 0, meaning the action runs on the first eligible
+evaluation after the condition becomes true.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="robpod.background.RuleWithDo" href="#robpod.background.RuleWithDo">RuleWithDo</a></code></dt>
+<dd>Builder used to configure the action and start the rule.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>Log once when the robot program enters the running state:</p>
+<pre><code>on(
+    lambda: get_program_state() == ProgramStatus.RUNNING
+).do(
+    lambda: log("RUNNING")
+).start()
+</code></pre>
+<p>Log once when the program enters the paused state:</p>
+<pre><code>on(
+    lambda: get_program_state() == ProgramStatus.PAUSED
+).do(
+    lambda: log("PAUSED")
+).start()
+</code></pre>
+<p>Log once when the program enters the stopped state:</p>
+<pre><code>on(
+    lambda: get_program_state() == ProgramStatus.STOPPED
+).do(
+    lambda: log("STOPPED")
+).start()
+</code></pre>
+<p>Trigger only if the robot remains paused for at least three seconds:</p>
+<pre><code>on(
+    lambda: get_program_state() == ProgramStatus.PAUSED,
+    duration=3,
+).do(
+    lambda: log("Program has been paused for 3 seconds")
+).start()
+</code></pre>
+<h2 id="note">Note</h2>
+<p>The condition is evaluated periodically, so the action may run
+slightly later than the specified duration due to the polling
+interval and execution time.</p></div>
+</dd>
+<dt id="robpod.background.retry"><code class="name flex">
+<span>def <span class="ident">retry</span></span>(<span>func=None, max_retries=None, delay=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def retry(func=None, max_retries=None, delay=1):
+    &#34;&#34;&#34;Retry a function when it raises an exception.
+
+    The decorated function is executed repeatedly until it succeeds or
+    the maximum number of retries is reached. A delay is applied between
+    failed attempts.
+
+    This decorator can be used with or without parentheses.
+
+    Args:
+        func (callable, optional): Function to decorate. Usually omitted
+            when passing decorator options.
+        max_retries (int, optional): Maximum number of retries after the
+            initial attempt. If None, retries indefinitely. Defaults to
+            None.
+        delay (int | float, optional): Delay in seconds between failed
+            attempts. Defaults to 1.
+
+    Returns:
+        callable: A decorated function that retries on exceptions and
+        returns the wrapped function&#39;s result when successful.
+
+    Raises:
+        Exception: Re-raises the last exception when the maximum number
+            of retries is reached.
+
+    Examples:
+        Retry indefinitely until the function succeeds:
+
+            @retry
+            def connect():
+                return establish_connection()
+
+        Retry up to three times after the initial attempt:
+
+            @retry(max_retries=3, delay=2)
+            def read_sensor():
+                return sensor.read()
+    &#34;&#34;&#34;
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            attempt = 0
+
+            while max_retries is None or attempt &lt;= max_retries:
+                try:
+                    return func(*args, **kwargs)
+                except Exception:
+                    if max_retries is not None and attempt &gt;= max_retries:
+                        raise
+
+                    attempt += 1
+                    time.sleep(delay)
+
+        return wrapper
+
+    if func is not None:
+        return decorator(func)
+
+    return decorator</code></pre>
+</details>
+<div class="desc"><p>Retry a function when it raises an exception.</p>
+<p>The decorated function is executed repeatedly until it succeeds or
+the maximum number of retries is reached. A delay is applied between
+failed attempts.</p>
+<p>This decorator can be used with or without parentheses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>func</code></strong> :&ensp;<code>callable</code>, optional</dt>
+<dd>Function to decorate. Usually omitted
+when passing decorator options.</dd>
+<dt><strong><code>max_retries</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Maximum number of retries after the
+initial attempt. If None, retries indefinitely. Defaults to
+None.</dd>
+<dt><strong><code>delay</code></strong> :&ensp;<code>int | float</code>, optional</dt>
+<dd>Delay in seconds between failed
+attempts. Defaults to 1.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>callable</code></dt>
+<dd>A decorated function that retries on exceptions and</dd>
+</dl>
+<p>returns the wrapped function's result when successful.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>Re-raises the last exception when the maximum number
+of retries is reached.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>Retry indefinitely until the function succeeds:</p>
+<pre><code>@retry
+def connect():
+    return establish_connection()
+</code></pre>
+<p>Retry up to three times after the initial attempt:</p>
+<pre><code>@retry(max_retries=3, delay=2)
+def read_sensor():
+    return sensor.read()
+</code></pre></div>
+</dd>
+<dt id="robpod.background.set_analog_input_mode"><code class="name flex">
+<span>def <span class="ident">set_analog_input_mode</span></span>(<span>index, mode)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_input_mode(index, mode):
+    &#34;&#34;&#34;Configure the operating mode of an analog input.
+
+    Args:
+        index (int): Index of the analog input.
+        mode (str): Desired analog mode, such as AnalogMode.CURRENT
+            or AnalogMode.VOLTAGE.
+    &#34;&#34;&#34;
+    return _robot.set_analog_input_mode(index, mode)</code></pre>
+</details>
+<div class="desc"><p>Configure the operating mode of an analog input.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the analog input.</dd>
+<dt><strong><code>mode</code></strong> :&ensp;<code>str</code></dt>
+<dd>Desired analog mode, such as AnalogMode.CURRENT
+or AnalogMode.VOLTAGE.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.set_analog_output"><code class="name flex">
+<span>def <span class="ident">set_analog_output</span></span>(<span>index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_output(index, value):
+    &#34;&#34;&#34;Set the value of an analog output.
+
+    Args:
+        index (int): Index of the analog output.
+        value (float): Analog value to assign to the output. The valid
+            range depends on the configured output mode and robot API.
+
+    &#34;&#34;&#34;
+    return _robot.set_analog_output(index, value)</code></pre>
+</details>
+<div class="desc"><p>Set the value of an analog output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the analog output.</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>float</code></dt>
+<dd>Analog value to assign to the output. The valid
+range depends on the configured output mode and robot API.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.set_analog_output_mode"><code class="name flex">
+<span>def <span class="ident">set_analog_output_mode</span></span>(<span>index, mode)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_output_mode(index, mode):
+    &#34;&#34;&#34;Configure the operating mode of an analog output.
+
+    Args:
+        index (int): Index of the analog output.
+        mode (str): Desired analog mode, such as AnalogMode.CURRENT
+            or AnalogMode.VOLTAGE.
+
+    &#34;&#34;&#34;
+    return _robot.set_analog_output_mode(index, mode)</code></pre>
+</details>
+<div class="desc"><p>Configure the operating mode of an analog output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the analog output.</dd>
+<dt><strong><code>mode</code></strong> :&ensp;<code>str</code></dt>
+<dd>Desired analog mode, such as AnalogMode.CURRENT
+or AnalogMode.VOLTAGE.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.set_configurable_digital_output"><code class="name flex">
+<span>def <span class="ident">set_configurable_digital_output</span></span>(<span>index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_configurable_digital_output(index, value):
+    &#34;&#34;&#34;Set the state of a configurable digital output.
+
+    Args:
+        index (int): Index of the configurable digital output.
+        value (bool): Desired output state. Use ON or OFF.
+
+    &#34;&#34;&#34;
+    return _robot.set_configurable_digital_output(index, value)</code></pre>
+</details>
+<div class="desc"><p>Set the state of a configurable digital output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the configurable digital output.</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Desired output state. Use ON or OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.set_digital_output"><code class="name flex">
+<span>def <span class="ident">set_digital_output</span></span>(<span>index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_digital_output(index, value):
+    &#34;&#34;&#34;Set the state of a digital output.
+
+    Args:
+        index (int): Index of the digital output.
+        value (bool): Desired output state. Use ON or OFF.
+
+    &#34;&#34;&#34;
+    return _robot.set_digital_output(index, value)</code></pre>
+</details>
+<div class="desc"><p>Set the state of a digital output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the digital output.</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Desired output state. Use ON or OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.set_register"><code class="name flex">
+<span>def <span class="ident">set_register</span></span>(<span>index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_register(index, value):
+    &#34;&#34;&#34;Write a value to a robot register (modbus).
+
+    Args:
+        index (int): Index of the register to write.
+        value (int): Value to store in the register.
+
+    &#34;&#34;&#34;
+    return _robot.set_register(index, value)</code></pre>
+</details>
+<div class="desc"><p>Write a value to a robot register (modbus).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the register to write.</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>int</code></dt>
+<dd>Value to store in the register.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.set_tool_digital_output"><code class="name flex">
+<span>def <span class="ident">set_tool_digital_output</span></span>(<span>index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_tool_digital_output(index, value):
+    &#34;&#34;&#34;Set the state of a tool digital output.
+
+    Args:
+        index (int): Index of the tool digital output.
+        value (bool): Desired output state. Use ON or OFF.
+
+    &#34;&#34;&#34;
+    return _robot.set_tool_digital_output(index, value)</code></pre>
+</details>
+<div class="desc"><p>Set the state of a tool digital output.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>Index of the tool digital output.</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Desired output state. Use ON or OFF.</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.wait_boot_completed"><code class="name flex">
+<span>def <span class="ident">wait_boot_completed</span></span>(<span>timeout=300)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wait_boot_completed(timeout=60*5):
+    &#34;&#34;&#34;Wait for the robot boot process to complete.
+
+    Args:
+        timeout (int): Maximum time to wait, in seconds.
+            Defaults to 300 seconds (5 minutes).
+
+    &#34;&#34;&#34;
+    return _robot.wait_boot_completed(timeout)</code></pre>
+</details>
+<div class="desc"><p>Wait for the robot boot process to complete.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>timeout</code></strong> :&ensp;<code>int</code></dt>
+<dd>Maximum time to wait, in seconds.
+Defaults to 300 seconds (5 minutes).</dd>
+</dl></div>
+</dd>
+<dt id="robpod.background.when"><code class="name flex">
+<span>def <span class="ident">when</span></span>(<span>condition)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def when(condition):
+    &#34;&#34;&#34;Create a rule that executes its action while a condition is true.
+
+    The condition is evaluated approximately every 0.5 seconds. Whenever
+    the condition evaluates to true, the action is executed. Therefore,
+    the action may run repeatedly for as long as the condition remains true.
+
+    Args:
+        condition (callable): Function returning a truthy or falsy value.
+
+    Returns:
+        RuleWithDo: Builder used to configure the action and start the rule.
+
+    Examples:
+        Log repeatedly while the robot program is running:
+
+            when(
+                lambda: get_program_state() == ProgramStatus.RUNNING
+            ).do(
+                lambda: log(&#34;Program is running&#34;)
+            ).start()
+
+        Turn on an output while the program is running:
+
+            when(
+                lambda: get_program_state() == ProgramStatus.RUNNING
+            ).do(
+                lambda: set_digital_output(0, ON)
+            ).start()
+
+    Note:
+        The action is not edge-triggered. If the condition stays true,
+        it is executed on every evaluation, approximately twice per second
+        with the default delay.
+    &#34;&#34;&#34;
+    rule = Rule(condition, fire_once=False)
+    return RuleWithDo(rule)</code></pre>
+</details>
+<div class="desc"><p>Create a rule that executes its action while a condition is true.</p>
+<p>The condition is evaluated approximately every 0.5 seconds. Whenever
+the condition evaluates to true, the action is executed. Therefore,
+the action may run repeatedly for as long as the condition remains true.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>condition</code></strong> :&ensp;<code>callable</code></dt>
+<dd>Function returning a truthy or falsy value.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="robpod.background.RuleWithDo" href="#robpod.background.RuleWithDo">RuleWithDo</a></code></dt>
+<dd>Builder used to configure the action and start the rule.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<p>Log repeatedly while the robot program is running:</p>
+<pre><code>when(
+    lambda: get_program_state() == ProgramStatus.RUNNING
+).do(
+    lambda: log("Program is running")
+).start()
+</code></pre>
+<p>Turn on an output while the program is running:</p>
+<pre><code>when(
+    lambda: get_program_state() == ProgramStatus.RUNNING
+).do(
+    lambda: set_digital_output(0, ON)
+).start()
+</code></pre>
+<h2 id="note">Note</h2>
+<p>The action is not edge-triggered. If the condition stays true,
+it is executed on every evaluation, approximately twice per second
+with the default delay.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="robpod.background.AnalogMode"><code class="flex name class">
+<span>class <span class="ident">AnalogMode</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AnalogMode:
+    &#34;&#34;&#34;Analog signal modes.&#34;&#34;&#34;
+
+    CURRENT = &#34;CURRENT&#34;
+    VOLTAGE = &#34;VOLTAGE&#34;</code></pre>
+</details>
+<div class="desc"><p>Analog signal modes.</p></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="robpod.background.AnalogMode.CURRENT"><code class="name">var <span class="ident">CURRENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.AnalogMode.VOLTAGE"><code class="name">var <span class="ident">VOLTAGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robpod.background.DoosanRobotClient"><code class="flex name class">
+<span>class <span class="ident">DoosanRobotClient</span></span>
+<span>(</span><span>host)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DoosanRobotClient(_RobotClient):
+
+    def __init__(self, host):
+        _RobotClient.__init__(self, host)  # call parent constructor
+        self.modbus_client = modbus.ModbusClient(host)
+
+    def get_digital_input(self, index):
+        return self.modbus_client.read_coils(1, -1 + index, 1)[0]
+
+    def get_configurable_digital_input(self, index):
+        return get_digital_input(index)
+
+    def get_digital_output(self, index):
+        return self.modbus_client.read_coils(1, 19 + index, 1)[0]
+
+    def get_configurable_digital_output(self, index):
+        return get_digital_output(index)
+
+    def set_configurable_digital_output(self, index, value):
+        return set_digital_output(index, value)
+
+    def set_digital_output(self, index, value):
+        return self.modbus_client.write_coils(1, 19 + index, [value])
+
+    def get_tool_digital_output(self, index):
+        return self.modbus_client.read_coils(1, 41 + index, 1)[0]
+
+    def get_tool_digital_input(self, index):
+        return self.modbus_client.read_coils(1, 35 + index, 1)[0]
+
+    def set_tool_digital_output(self, index, value):
+        return self.modbus_client.write_coils(1, 41 + index, [value])
+
+    def get_joint_pose(self):
+        values = self.modbus_client.read_holding_registers(1, 270, 6)
+
+        result = []
+        for val in values:
+            result.append((modbus.to_signed_value(val)/ 10))
+
+        return result
+
+    def get_joint_velocity(self):
+        values = self.modbus_client.read_holding_registers(1, 280, 6)
+
+        result = []
+        for val in values:
+            result.append((modbus.to_signed_value(val) / 10))
+
+        return result
+
+    def get_tcp_pose(self):
+        values = self.modbus_client.read_holding_registers(1, 400, 6)
+
+        result = []
+        for val in values:
+            result.append((modbus.to_signed_value(val) / 10))
+
+        return result
+
+    def get_tcp_velocity(self):
+        values = self.modbus_client.read_holding_registers(1, 410, 6)
+
+        result = []
+        for val in values:
+            result.append((modbus.to_signed_value(val) / 10))
+
+        return result
+
+    def get_tcp_offset(self):
+        values = self.modbus_client.read_holding_registers(1, 420, 6)
+
+        result = []
+        for val in values:
+            result.append((modbus.to_signed_value(val) / 10))
+
+        return result
+
+    def get_register(self, index):
+        return self.modbus_client.read_holding_registers(1, index, 1)[0]
+
+    def set_register(self, index, value):
+        return self.modbus_client.write_register(1, index, value)
+
+    def get_state(self):
+        status = self.modbus_client.read_holding_registers(1, 259, 1)[0]
+
+        if status == 0 or status == 1 or status == 2:
+            return RobotStatus.BACKDRIVE
+        elif status == 3:
+            return RobotStatus.SERVO_OFF
+        elif status == 4:
+            return RobotStatus.INITIALIZING
+        elif status == 5:
+            return RobotStatus.SAFETY_STOP
+        elif status == 6:
+            return RobotStatus.EMERGENCY_STOP
+        elif status == 7 or status == 8 or status == 9 or status == 10:
+            return RobotStatus.RECOVERY
+        elif status == 11 or status == 12:
+            return RobotStatus.SERVO_ON
+        elif status == 13:
+            return RobotStatus.FREE_DRIVE
+        elif status == 14 or status == 15 or status == 16:
+            return RobotStatus.SERVO_ON
+        elif status == 17 or status == 18:
+            return RobotStatus.SERVO_ON_REDUCED
+        elif status == 19 or status == 20:
+            return RobotStatus.FREE_DRIVE
+        else:
+            return RobotStatus.SERVO_OFF
+
+    def get_program_state(self):
+        raise Exception(&#34;Action not supported&#34;)
+
+    def get_mode(self):
+        status = self.modbus_client.read_holding_registers(1, 259, 1)[0]
+        if status in [0, 1, 2, 3, 5, 6, 8, 9, 10, 11, 12, 13]:
+            return RobotMode.MANUAL
+        elif status in [7, 14, 15, 16, 17, 18]:
+            return  RobotMode.AUTOMATIC
+        elif status in [19, 20]:
+            return RobotMode.TEACHING
+        else:
+            return None
+
+    def get_program_name(self):
+        raise Exception(&#34;Action not supported&#34;)
+
+    def get_analog_output(self, index):
+        return self.modbus_client.read_holding_registers(1, 14 + index * 2, 1)[0]
+
+    def set_analog_output(self, index, value):
+        return self.modbus_client.write_register(1, 14 + index * 2, int(value))
+
+    def get_analog_output_mode(self, index):
+        result = self.modbus_client.read_holding_registers(1, 15 + index * 2, 1)[0]
+        return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE
+
+    def set_analog_output_mode(self, index, mode):
+        mode = 0 if mode == AnalogMode.CURRENT else 1
+        return self.modbus_client.write_register(1, 15 + index * 2, mode)
+
+    def get_analog_input(self, index):
+        return self.modbus_client.read_holding_registers(1, 2 + index * 2, 1)[0]
+
+    def get_analog_input_mode(self, index):
+        result = self.modbus_client.read_holding_registers(1, 3 + index * 2, 1)[0]
+        return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE
+
+    def set_analog_input_mode(self, index, mode):
+        mode = 0 if mode == AnalogMode.CURRENT else 1
+        return self.modbus_client.write_register(1, 3 + index * 2, mode)
+
+    def wait_boot_completed(self, timeout=60):
+        deadline = time.time() + timeout
+
+        while True:
+            try:
+                status = self.modbus_client.read_holding_registers(1, 259, 1)[0]
+                if status == 0 or status == 4:
+                    raise Exception(&#34;Robot booting, status: &#34;+str(status))
+                return True
+            except :
+                remaining = deadline - time.time()
+                if remaining &lt;= 0:
+                    raise TimeoutError(&#34;Robot did not become available within &#34; + str(timeout) + &#34; seconds&#34;)
+
+                time.sleep(2)</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>robpod.background._RobotClient</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="robpod.background.DoosanRobotClient.get_analog_input"><code class="name flex">
+<span>def <span class="ident">get_analog_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_input(self, index):
+    return self.modbus_client.read_holding_registers(1, 2 + index * 2, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_analog_input_mode"><code class="name flex">
+<span>def <span class="ident">get_analog_input_mode</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_input_mode(self, index):
+    result = self.modbus_client.read_holding_registers(1, 3 + index * 2, 1)[0]
+    return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_analog_output"><code class="name flex">
+<span>def <span class="ident">get_analog_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_output(self, index):
+    return self.modbus_client.read_holding_registers(1, 14 + index * 2, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_analog_output_mode"><code class="name flex">
+<span>def <span class="ident">get_analog_output_mode</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_output_mode(self, index):
+    result = self.modbus_client.read_holding_registers(1, 15 + index * 2, 1)[0]
+    return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_configurable_digital_input"><code class="name flex">
+<span>def <span class="ident">get_configurable_digital_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_configurable_digital_input(self, index):
+    return get_digital_input(index)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_configurable_digital_output"><code class="name flex">
+<span>def <span class="ident">get_configurable_digital_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_configurable_digital_output(self, index):
+    return get_digital_output(index)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_digital_input"><code class="name flex">
+<span>def <span class="ident">get_digital_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_digital_input(self, index):
+    return self.modbus_client.read_coils(1, -1 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_digital_output"><code class="name flex">
+<span>def <span class="ident">get_digital_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_digital_output(self, index):
+    return self.modbus_client.read_coils(1, 19 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_joint_pose"><code class="name flex">
+<span>def <span class="ident">get_joint_pose</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_joint_pose(self):
+    values = self.modbus_client.read_holding_registers(1, 270, 6)
+
+    result = []
+    for val in values:
+        result.append((modbus.to_signed_value(val)/ 10))
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_joint_velocity"><code class="name flex">
+<span>def <span class="ident">get_joint_velocity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_joint_velocity(self):
+    values = self.modbus_client.read_holding_registers(1, 280, 6)
+
+    result = []
+    for val in values:
+        result.append((modbus.to_signed_value(val) / 10))
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_mode"><code class="name flex">
+<span>def <span class="ident">get_mode</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mode(self):
+    status = self.modbus_client.read_holding_registers(1, 259, 1)[0]
+    if status in [0, 1, 2, 3, 5, 6, 8, 9, 10, 11, 12, 13]:
+        return RobotMode.MANUAL
+    elif status in [7, 14, 15, 16, 17, 18]:
+        return  RobotMode.AUTOMATIC
+    elif status in [19, 20]:
+        return RobotMode.TEACHING
+    else:
+        return None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_program_name"><code class="name flex">
+<span>def <span class="ident">get_program_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_program_name(self):
+    raise Exception(&#34;Action not supported&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_program_state"><code class="name flex">
+<span>def <span class="ident">get_program_state</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_program_state(self):
+    raise Exception(&#34;Action not supported&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_register"><code class="name flex">
+<span>def <span class="ident">get_register</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_register(self, index):
+    return self.modbus_client.read_holding_registers(1, index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_state"><code class="name flex">
+<span>def <span class="ident">get_state</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_state(self):
+    status = self.modbus_client.read_holding_registers(1, 259, 1)[0]
+
+    if status == 0 or status == 1 or status == 2:
+        return RobotStatus.BACKDRIVE
+    elif status == 3:
+        return RobotStatus.SERVO_OFF
+    elif status == 4:
+        return RobotStatus.INITIALIZING
+    elif status == 5:
+        return RobotStatus.SAFETY_STOP
+    elif status == 6:
+        return RobotStatus.EMERGENCY_STOP
+    elif status == 7 or status == 8 or status == 9 or status == 10:
+        return RobotStatus.RECOVERY
+    elif status == 11 or status == 12:
+        return RobotStatus.SERVO_ON
+    elif status == 13:
+        return RobotStatus.FREE_DRIVE
+    elif status == 14 or status == 15 or status == 16:
+        return RobotStatus.SERVO_ON
+    elif status == 17 or status == 18:
+        return RobotStatus.SERVO_ON_REDUCED
+    elif status == 19 or status == 20:
+        return RobotStatus.FREE_DRIVE
+    else:
+        return RobotStatus.SERVO_OFF</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_tcp_offset"><code class="name flex">
+<span>def <span class="ident">get_tcp_offset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_offset(self):
+    values = self.modbus_client.read_holding_registers(1, 420, 6)
+
+    result = []
+    for val in values:
+        result.append((modbus.to_signed_value(val) / 10))
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_tcp_pose"><code class="name flex">
+<span>def <span class="ident">get_tcp_pose</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_pose(self):
+    values = self.modbus_client.read_holding_registers(1, 400, 6)
+
+    result = []
+    for val in values:
+        result.append((modbus.to_signed_value(val) / 10))
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_tcp_velocity"><code class="name flex">
+<span>def <span class="ident">get_tcp_velocity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_velocity(self):
+    values = self.modbus_client.read_holding_registers(1, 410, 6)
+
+    result = []
+    for val in values:
+        result.append((modbus.to_signed_value(val) / 10))
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_tool_digital_input"><code class="name flex">
+<span>def <span class="ident">get_tool_digital_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tool_digital_input(self, index):
+    return self.modbus_client.read_coils(1, 35 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.get_tool_digital_output"><code class="name flex">
+<span>def <span class="ident">get_tool_digital_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tool_digital_output(self, index):
+    return self.modbus_client.read_coils(1, 41 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.set_analog_input_mode"><code class="name flex">
+<span>def <span class="ident">set_analog_input_mode</span></span>(<span>self, index, mode)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_input_mode(self, index, mode):
+    mode = 0 if mode == AnalogMode.CURRENT else 1
+    return self.modbus_client.write_register(1, 3 + index * 2, mode)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.set_analog_output"><code class="name flex">
+<span>def <span class="ident">set_analog_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_output(self, index, value):
+    return self.modbus_client.write_register(1, 14 + index * 2, int(value))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.set_analog_output_mode"><code class="name flex">
+<span>def <span class="ident">set_analog_output_mode</span></span>(<span>self, index, mode)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_output_mode(self, index, mode):
+    mode = 0 if mode == AnalogMode.CURRENT else 1
+    return self.modbus_client.write_register(1, 15 + index * 2, mode)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.set_configurable_digital_output"><code class="name flex">
+<span>def <span class="ident">set_configurable_digital_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_configurable_digital_output(self, index, value):
+    return set_digital_output(index, value)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.set_digital_output"><code class="name flex">
+<span>def <span class="ident">set_digital_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_digital_output(self, index, value):
+    return self.modbus_client.write_coils(1, 19 + index, [value])</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.set_register"><code class="name flex">
+<span>def <span class="ident">set_register</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_register(self, index, value):
+    return self.modbus_client.write_register(1, index, value)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.set_tool_digital_output"><code class="name flex">
+<span>def <span class="ident">set_tool_digital_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_tool_digital_output(self, index, value):
+    return self.modbus_client.write_coils(1, 41 + index, [value])</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.DoosanRobotClient.wait_boot_completed"><code class="name flex">
+<span>def <span class="ident">wait_boot_completed</span></span>(<span>self, timeout=60)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wait_boot_completed(self, timeout=60):
+    deadline = time.time() + timeout
+
+    while True:
+        try:
+            status = self.modbus_client.read_holding_registers(1, 259, 1)[0]
+            if status == 0 or status == 4:
+                raise Exception(&#34;Robot booting, status: &#34;+str(status))
+            return True
+        except :
+            remaining = deadline - time.time()
+            if remaining &lt;= 0:
+                raise TimeoutError(&#34;Robot did not become available within &#34; + str(timeout) + &#34; seconds&#34;)
+
+            time.sleep(2)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robpod.background.ProgramStatus"><code class="flex name class">
+<span>class <span class="ident">ProgramStatus</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ProgramStatus:
+    &#34;&#34;&#34;Possible execution states of a robot program.&#34;&#34;&#34;
+
+    STOPPED = &#34;STOPPED&#34;
+    PAUSED = &#34;PAUSED&#34;
+    RUNNING = &#34;RUNNING&#34;</code></pre>
+</details>
+<div class="desc"><p>Possible execution states of a robot program.</p></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="robpod.background.ProgramStatus.PAUSED"><code class="name">var <span class="ident">PAUSED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.ProgramStatus.RUNNING"><code class="name">var <span class="ident">RUNNING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.ProgramStatus.STOPPED"><code class="name">var <span class="ident">STOPPED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robpod.background.RobotMode"><code class="flex name class">
+<span>class <span class="ident">RobotMode</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RobotMode:
+    &#34;&#34;&#34;Robot mode.&#34;&#34;&#34;
+
+    MANUAL = &#34;MANUAL&#34;
+    AUTOMATIC = &#34;AUTOMATIC&#34;
+    TEACHING = &#34;TEACHING&#34;</code></pre>
+</details>
+<div class="desc"><p>Robot mode.</p></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="robpod.background.RobotMode.AUTOMATIC"><code class="name">var <span class="ident">AUTOMATIC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotMode.MANUAL"><code class="name">var <span class="ident">MANUAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotMode.TEACHING"><code class="name">var <span class="ident">TEACHING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robpod.background.RobotStatus"><code class="flex name class">
+<span>class <span class="ident">RobotStatus</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RobotStatus:
+    &#34;&#34;&#34;Possible states of the robot.&#34;&#34;&#34;
+
+    INITIALIZING = &#34;INITIALIZING&#34;
+    SERVO_OFF = &#34;SERVO_OFF&#34;
+    IDLE = &#34;IDLE&#34;
+    SERVO_ON = &#34;SERVO_ON&#34;
+    SERVO_ON_REDUCED = &#34;SERVO_ON_REDUCED&#34;
+    EMERGENCY_STOP = &#34;EMERGENCY_STOP&#34;
+    SAFETY_STOP = &#34;SAFETY_STOP&#34;
+    RECOVERY = &#34;RECOVERY&#34;
+    BACKDRIVE = &#34;BACKDRIVE&#34;
+    FREE_DRIVE = &#34;FREE_DRIVE&#34;</code></pre>
+</details>
+<div class="desc"><p>Possible states of the robot.</p></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="robpod.background.RobotStatus.BACKDRIVE"><code class="name">var <span class="ident">BACKDRIVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.EMERGENCY_STOP"><code class="name">var <span class="ident">EMERGENCY_STOP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.FREE_DRIVE"><code class="name">var <span class="ident">FREE_DRIVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.IDLE"><code class="name">var <span class="ident">IDLE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.INITIALIZING"><code class="name">var <span class="ident">INITIALIZING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.RECOVERY"><code class="name">var <span class="ident">RECOVERY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.SAFETY_STOP"><code class="name">var <span class="ident">SAFETY_STOP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.SERVO_OFF"><code class="name">var <span class="ident">SERVO_OFF</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.SERVO_ON"><code class="name">var <span class="ident">SERVO_ON</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RobotStatus.SERVO_ON_REDUCED"><code class="name">var <span class="ident">SERVO_ON_REDUCED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robpod.background.Rule"><code class="flex name class">
+<span>class <span class="ident">Rule</span></span>
+<span>(</span><span>condition, fire_once=False, duration=0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Rule:
+    def __init__(self, condition, fire_once=False, duration=0):
+        self.condition = condition
+        self.action = None
+        self.delay = 0.5
+        self.fire_once = fire_once
+        self.duration = duration
+        self.condition_started_at = None
+        self.prev_condition = False
+
+    def _run(self):
+        while True:
+            try:
+                condition_value = self.condition()
+
+                if self.fire_once:
+                    if condition_value:
+                        # OFF -&gt; ON: start the timer
+                        if not self.prev_condition:
+                            self.condition_started_at = time.time()
+
+                        # Condition has remained ON for the required duration
+                        if (
+                            self.condition_started_at is not None
+                            and time.time() - self.condition_started_at &gt;= self.duration
+                        ):
+                            self.action()
+
+                            # Prevent firing again while condition stays ON
+                            self.condition_started_at = None
+                    else:
+                        # ON -&gt; OFF: reset the timer
+                        self.condition_started_at = None
+
+                else:
+                    if condition_value:
+                        self.action()
+
+                self.prev_condition = condition_value
+                time.sleep(self.delay)
+
+            except Exception as e:
+                time.sleep(self.delay)
+                print(e)
+
+    def _start(self):
+        thread = threading.Thread(target=self._run)
+        thread.daemon = False
+        thread.start()</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.RuleWithDo"><code class="flex name class">
+<span>class <span class="ident">RuleWithDo</span></span>
+<span>(</span><span>rule)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RuleWithDo:
+
+    def __init__(self, rule):
+        self._rule = rule
+
+    def do(self, action):
+        self._rule.action = action
+        return RuleWithStart(self._rule)</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="robpod.background.RuleWithDo.do"><code class="name flex">
+<span>def <span class="ident">do</span></span>(<span>self, action)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do(self, action):
+    self._rule.action = action
+    return RuleWithStart(self._rule)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robpod.background.RuleWithStart"><code class="flex name class">
+<span>class <span class="ident">RuleWithStart</span></span>
+<span>(</span><span>rule)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RuleWithStart:
+
+    def __init__(self, rule):
+        self._rule = rule
+
+    def start(self):
+        self._rule._start()</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="robpod.background.RuleWithStart.start"><code class="name flex">
+<span>def <span class="ident">start</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def start(self):
+    self._rule._start()</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="robpod.background.UrRobotClient"><code class="flex name class">
+<span>class <span class="ident">UrRobotClient</span></span>
+<span>(</span><span>host)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UrRobotClient(_RobotClient):
+
+    def __init__(self, host):
+        _RobotClient.__init__(self, host)  # call parent constructor
+        self.modbus_client = modbus.ModbusClient(host)
+
+    def get_digital_output(self, index):
+        return self.modbus_client.read_coils(1, 16 + index, 1)[0]
+
+    def get_digital_input(self, index):
+        return self.modbus_client.read_coils(1, 0 + index, 1)[0]
+
+    def get_configurable_digital_input(self, index):
+        return self.modbus_client.read_coils(1, 128 + index, 1)[0]
+
+    def get_configurable_digital_output(self, index):
+        return self.modbus_client.read_coils(1, 136 + index, 1)[0]
+
+    def set_configurable_digital_output(self, index, value):
+        return self.modbus_client.write_coils(1, 136 + index, [value])
+
+    def set_digital_output(self, index, value):
+        return self.modbus_client.write_coils(1, 16 + index, [value])
+
+    def get_tool_digital_input(self, index):
+        return self.modbus_client.read_coils(1, 8 + index, 1)[0]
+
+    def get_tool_digital_output(self, index):
+        return self.modbus_client.read_coils(1, 34 + index, 1)[0]
+
+    def set_tool_digital_output(self, index, value):
+        return self.modbus_client.write_coils(1, 8 + index, [value])
+
+    def get_joint_velocity(self):
+        values = self.modbus_client.read_holding_registers(1, 280, 6)
+        result = []
+        for i in range(6):
+            result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+        return result
+
+    def get_joint_pose(self):
+        values = self.modbus_client.read_holding_registers(1, 270, 6)
+        turns = self.modbus_client.read_holding_registers(1, 320, 6)
+
+        result = []
+        for val, turn in zip(values, turns):
+            result.append((modbus.to_signed_value(turn) * 2 * 3.1415 * 1000 + val) / 1000.0)
+
+        return result
+
+    def get_tcp_pose(self):
+        values = self.modbus_client.read_holding_registers(1, 400, 6)
+        result = []
+        for i in range(3):
+            result.append(modbus.to_signed_value(values[i]) / 10000.0)
+
+        for i in range(3,6):
+            result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+        return result
+
+    def get_tcp_velocity(self):
+        values = self.modbus_client.read_holding_registers(1, 410, 6)
+        result = []
+        for i in range(6):
+            result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+        return result
+
+    def get_tcp_offset(self):
+        values = self.modbus_client.read_holding_registers(1, 420, 6)
+        result = []
+        for i in range(6):
+            result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+        return result
+
+    def get_register(self, index):
+        return self.modbus_client.read_holding_registers(1, index, 1)[0]
+
+    def set_register(self, index, value):
+        return self.modbus_client.write_register(1, index, value)
+
+    def get_state(self):
+        safety_mode = self.modbus_client.read_holding_registers(1, 266, 1)[0]
+        status = self.modbus_client.read_holding_registers(1, 258, 1)[0]
+
+        if safety_mode == 1 or safety_mode == 2:
+            if status == 3:
+                return RobotStatus.SERVO_OFF
+            elif status == 4 or status == 5:
+                return RobotStatus.IDLE
+            elif status == 6:
+                return RobotStatus.BACKDRIVE
+            elif status == 7:
+                if safety_mode == 2:
+                    return RobotStatus.SERVO_ON_REDUCED
+                else:
+                    return RobotStatus.SERVO_ON
+            else:
+                return RobotStatus.SERVO_OFF
+        elif safety_mode == 6 or safety_mode == 7:
+            return RobotStatus.EMERGENCY_STOP
+        elif safety_mode == 4:
+            return RobotStatus.EMERGENCY_STOP
+        else:
+            return RobotStatus.SAFETY_STOP
+
+    def get_program_state(self):
+        sock = socket.create_connection((self.host, 29999), timeout=3)
+        # Read the Dashboard Server greeting
+        greeting = sock.recv(4096).decode(&#34;utf-8&#34;).strip()
+
+        # Send command
+        sock.sendall(&#34;programState\n&#34;.encode())
+
+        # Read response
+        response = sock.recv(4096).decode().strip()
+        sock.close()
+        if response.startswith(&#34;STOPPED&#34;):
+            return ProgramStatus.STOPPED
+        elif response.startswith(&#34;PAUS&#34;):
+            return ProgramStatus.PAUSED
+        else:
+            return ProgramStatus.RUNNING
+
+    def get_mode(self):
+        sock = socket.create_connection((self.host, 29999), timeout=3)
+        # Read the Dashboard Server greeting
+        greeting = sock.recv(4096).decode(&#34;utf-8&#34;).strip()
+
+        # Send command
+        sock.sendall(&#34;get operational mode\n&#34;.encode())
+
+        # Read response
+        response = sock.recv(4096).decode().strip()
+        sock.close()
+        if response.startswith(&#34;MANUAL&#34;):
+            return RobotMode.MANUAL
+        elif response.startswith(&#34;AUTOMATIC&#34;):
+            return RobotMode.AUTOMATIC
+        else:
+            return None
+
+    def get_program_name(self):
+        sock = socket.create_connection((self.host, 29999), timeout=3)
+        # Read the Dashboard Server greeting
+        greeting = sock.recv(4096).decode(&#34;utf-8&#34;).strip()
+
+        # Send command
+        sock.sendall(&#34;get loaded program\n&#34;.encode())
+
+        # Read response
+        response = sock.recv(4096).decode().strip()
+        sock.close()
+
+        if response.startswith(&#34;Loaded program:&#34;):
+            path = response[len(&#34;Loaded program:&#34;):].strip()
+            filename = os.path.basename(path)
+            program_name = os.path.splitext(filename)[0]
+            return program_name
+
+        return None
+
+    def to_analog_value(self, value, mode):
+        if mode == AnalogMode.CURRENT:
+            return  4 + (value / 65535.0) * 16
+        else:
+            return (value / 65535.0) * 10
+
+    def get_analog_output(self, index):
+        value =  self.modbus_client.read_holding_registers(1, 16 + index * 2, 1)[0]
+        mode = self.get_analog_output_mode(index)
+        return self.to_analog_value(value, mode)
+
+    def set_analog_output(self, index, value):
+        mode = self.get_analog_output_mode(index)
+        if mode == AnalogMode.CURRENT:
+            value = (value - 4) * 65535 / 16.0
+        else:
+            value = value * 65535 / 10.0
+
+        return self.modbus_client.write_register(1, 16 + index * 2, int(value))
+
+    def get_analog_output_mode(self, index):
+        result =  self.modbus_client.read_holding_registers(1, 17 + index * 2, 1)[0]
+        return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE
+
+    def set_analog_output_mode(self, index, mode):
+        mode = 0 if mode == AnalogMode.CURRENT else 1
+        return self.modbus_client.write_register(1, 17 + index * 2, mode)
+
+    def get_analog_input_mode(self, index):
+        result = self.modbus_client.read_holding_registers(1, 5 + index * 2, 1)[0]
+        return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE
+
+    def get_analog_input(self, index):
+        value = self.modbus_client.read_holding_registers(1, 4 + index * 2, 1)[0]
+        mode = self.get_analog_input_mode(index)
+        return self.to_analog_value(value, mode)
+
+    def set_analog_input_mode(self, index, mode):
+        mode = 0 if mode == AnalogMode.CURRENT else 1
+        return self.modbus_client.write_register(1, 5 + index * 2, mode)
+
+    def wait_boot_completed(self, timeout=60):
+        deadline = time.time() + timeout
+
+        while True:
+            try:
+                self.get_program_name()
+                return True
+            except :
+                remaining = deadline - time.time()
+                if remaining &lt;= 0:
+                    raise TimeoutError(&#34;Robot did not become available within &#34; + str(timeout) + &#34; seconds&#34;)
+
+                time.sleep(2)</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>robpod.background._RobotClient</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="robpod.background.UrRobotClient.get_analog_input"><code class="name flex">
+<span>def <span class="ident">get_analog_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_input(self, index):
+    value = self.modbus_client.read_holding_registers(1, 4 + index * 2, 1)[0]
+    mode = self.get_analog_input_mode(index)
+    return self.to_analog_value(value, mode)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_analog_input_mode"><code class="name flex">
+<span>def <span class="ident">get_analog_input_mode</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_input_mode(self, index):
+    result = self.modbus_client.read_holding_registers(1, 5 + index * 2, 1)[0]
+    return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_analog_output"><code class="name flex">
+<span>def <span class="ident">get_analog_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_output(self, index):
+    value =  self.modbus_client.read_holding_registers(1, 16 + index * 2, 1)[0]
+    mode = self.get_analog_output_mode(index)
+    return self.to_analog_value(value, mode)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_analog_output_mode"><code class="name flex">
+<span>def <span class="ident">get_analog_output_mode</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analog_output_mode(self, index):
+    result =  self.modbus_client.read_holding_registers(1, 17 + index * 2, 1)[0]
+    return AnalogMode.CURRENT if result == 0 else AnalogMode.VOLTAGE</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_configurable_digital_input"><code class="name flex">
+<span>def <span class="ident">get_configurable_digital_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_configurable_digital_input(self, index):
+    return self.modbus_client.read_coils(1, 128 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_configurable_digital_output"><code class="name flex">
+<span>def <span class="ident">get_configurable_digital_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_configurable_digital_output(self, index):
+    return self.modbus_client.read_coils(1, 136 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_digital_input"><code class="name flex">
+<span>def <span class="ident">get_digital_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_digital_input(self, index):
+    return self.modbus_client.read_coils(1, 0 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_digital_output"><code class="name flex">
+<span>def <span class="ident">get_digital_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_digital_output(self, index):
+    return self.modbus_client.read_coils(1, 16 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_joint_pose"><code class="name flex">
+<span>def <span class="ident">get_joint_pose</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_joint_pose(self):
+    values = self.modbus_client.read_holding_registers(1, 270, 6)
+    turns = self.modbus_client.read_holding_registers(1, 320, 6)
+
+    result = []
+    for val, turn in zip(values, turns):
+        result.append((modbus.to_signed_value(turn) * 2 * 3.1415 * 1000 + val) / 1000.0)
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_joint_velocity"><code class="name flex">
+<span>def <span class="ident">get_joint_velocity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_joint_velocity(self):
+    values = self.modbus_client.read_holding_registers(1, 280, 6)
+    result = []
+    for i in range(6):
+        result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_mode"><code class="name flex">
+<span>def <span class="ident">get_mode</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mode(self):
+    sock = socket.create_connection((self.host, 29999), timeout=3)
+    # Read the Dashboard Server greeting
+    greeting = sock.recv(4096).decode(&#34;utf-8&#34;).strip()
+
+    # Send command
+    sock.sendall(&#34;get operational mode\n&#34;.encode())
+
+    # Read response
+    response = sock.recv(4096).decode().strip()
+    sock.close()
+    if response.startswith(&#34;MANUAL&#34;):
+        return RobotMode.MANUAL
+    elif response.startswith(&#34;AUTOMATIC&#34;):
+        return RobotMode.AUTOMATIC
+    else:
+        return None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_program_name"><code class="name flex">
+<span>def <span class="ident">get_program_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_program_name(self):
+    sock = socket.create_connection((self.host, 29999), timeout=3)
+    # Read the Dashboard Server greeting
+    greeting = sock.recv(4096).decode(&#34;utf-8&#34;).strip()
+
+    # Send command
+    sock.sendall(&#34;get loaded program\n&#34;.encode())
+
+    # Read response
+    response = sock.recv(4096).decode().strip()
+    sock.close()
+
+    if response.startswith(&#34;Loaded program:&#34;):
+        path = response[len(&#34;Loaded program:&#34;):].strip()
+        filename = os.path.basename(path)
+        program_name = os.path.splitext(filename)[0]
+        return program_name
+
+    return None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_program_state"><code class="name flex">
+<span>def <span class="ident">get_program_state</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_program_state(self):
+    sock = socket.create_connection((self.host, 29999), timeout=3)
+    # Read the Dashboard Server greeting
+    greeting = sock.recv(4096).decode(&#34;utf-8&#34;).strip()
+
+    # Send command
+    sock.sendall(&#34;programState\n&#34;.encode())
+
+    # Read response
+    response = sock.recv(4096).decode().strip()
+    sock.close()
+    if response.startswith(&#34;STOPPED&#34;):
+        return ProgramStatus.STOPPED
+    elif response.startswith(&#34;PAUS&#34;):
+        return ProgramStatus.PAUSED
+    else:
+        return ProgramStatus.RUNNING</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_register"><code class="name flex">
+<span>def <span class="ident">get_register</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_register(self, index):
+    return self.modbus_client.read_holding_registers(1, index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_state"><code class="name flex">
+<span>def <span class="ident">get_state</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_state(self):
+    safety_mode = self.modbus_client.read_holding_registers(1, 266, 1)[0]
+    status = self.modbus_client.read_holding_registers(1, 258, 1)[0]
+
+    if safety_mode == 1 or safety_mode == 2:
+        if status == 3:
+            return RobotStatus.SERVO_OFF
+        elif status == 4 or status == 5:
+            return RobotStatus.IDLE
+        elif status == 6:
+            return RobotStatus.BACKDRIVE
+        elif status == 7:
+            if safety_mode == 2:
+                return RobotStatus.SERVO_ON_REDUCED
+            else:
+                return RobotStatus.SERVO_ON
+        else:
+            return RobotStatus.SERVO_OFF
+    elif safety_mode == 6 or safety_mode == 7:
+        return RobotStatus.EMERGENCY_STOP
+    elif safety_mode == 4:
+        return RobotStatus.EMERGENCY_STOP
+    else:
+        return RobotStatus.SAFETY_STOP</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_tcp_offset"><code class="name flex">
+<span>def <span class="ident">get_tcp_offset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_offset(self):
+    values = self.modbus_client.read_holding_registers(1, 420, 6)
+    result = []
+    for i in range(6):
+        result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_tcp_pose"><code class="name flex">
+<span>def <span class="ident">get_tcp_pose</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_pose(self):
+    values = self.modbus_client.read_holding_registers(1, 400, 6)
+    result = []
+    for i in range(3):
+        result.append(modbus.to_signed_value(values[i]) / 10000.0)
+
+    for i in range(3,6):
+        result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_tcp_velocity"><code class="name flex">
+<span>def <span class="ident">get_tcp_velocity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tcp_velocity(self):
+    values = self.modbus_client.read_holding_registers(1, 410, 6)
+    result = []
+    for i in range(6):
+        result.append(modbus.to_signed_value(values[i]) / 1000.0)
+
+    return result</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_tool_digital_input"><code class="name flex">
+<span>def <span class="ident">get_tool_digital_input</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tool_digital_input(self, index):
+    return self.modbus_client.read_coils(1, 8 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.get_tool_digital_output"><code class="name flex">
+<span>def <span class="ident">get_tool_digital_output</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tool_digital_output(self, index):
+    return self.modbus_client.read_coils(1, 34 + index, 1)[0]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.set_analog_input_mode"><code class="name flex">
+<span>def <span class="ident">set_analog_input_mode</span></span>(<span>self, index, mode)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_input_mode(self, index, mode):
+    mode = 0 if mode == AnalogMode.CURRENT else 1
+    return self.modbus_client.write_register(1, 5 + index * 2, mode)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.set_analog_output"><code class="name flex">
+<span>def <span class="ident">set_analog_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_output(self, index, value):
+    mode = self.get_analog_output_mode(index)
+    if mode == AnalogMode.CURRENT:
+        value = (value - 4) * 65535 / 16.0
+    else:
+        value = value * 65535 / 10.0
+
+    return self.modbus_client.write_register(1, 16 + index * 2, int(value))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.set_analog_output_mode"><code class="name flex">
+<span>def <span class="ident">set_analog_output_mode</span></span>(<span>self, index, mode)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_analog_output_mode(self, index, mode):
+    mode = 0 if mode == AnalogMode.CURRENT else 1
+    return self.modbus_client.write_register(1, 17 + index * 2, mode)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.set_configurable_digital_output"><code class="name flex">
+<span>def <span class="ident">set_configurable_digital_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_configurable_digital_output(self, index, value):
+    return self.modbus_client.write_coils(1, 136 + index, [value])</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.set_digital_output"><code class="name flex">
+<span>def <span class="ident">set_digital_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_digital_output(self, index, value):
+    return self.modbus_client.write_coils(1, 16 + index, [value])</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.set_register"><code class="name flex">
+<span>def <span class="ident">set_register</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_register(self, index, value):
+    return self.modbus_client.write_register(1, index, value)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.set_tool_digital_output"><code class="name flex">
+<span>def <span class="ident">set_tool_digital_output</span></span>(<span>self, index, value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_tool_digital_output(self, index, value):
+    return self.modbus_client.write_coils(1, 8 + index, [value])</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.to_analog_value"><code class="name flex">
+<span>def <span class="ident">to_analog_value</span></span>(<span>self, value, mode)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_analog_value(self, value, mode):
+    if mode == AnalogMode.CURRENT:
+        return  4 + (value / 65535.0) * 16
+    else:
+        return (value / 65535.0) * 10</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="robpod.background.UrRobotClient.wait_boot_completed"><code class="name flex">
+<span>def <span class="ident">wait_boot_completed</span></span>(<span>self, timeout=60)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wait_boot_completed(self, timeout=60):
+    deadline = time.time() + timeout
+
+    while True:
+        try:
+            self.get_program_name()
+            return True
+        except :
+            remaining = deadline - time.time()
+            if remaining &lt;= 0:
+                raise TimeoutError(&#34;Robot did not become available within &#34; + str(timeout) + &#34; seconds&#34;)
+
+            time.sleep(2)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="">
+<li><code><a title="robpod.background.OFF" href="#robpod.background.OFF">OFF</a></code></li>
+<li><code><a title="robpod.background.ON" href="#robpod.background.ON">ON</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="robpod.background.get_analog_input" href="#robpod.background.get_analog_input">get_analog_input</a></code></li>
+<li><code><a title="robpod.background.get_analog_input_mode" href="#robpod.background.get_analog_input_mode">get_analog_input_mode</a></code></li>
+<li><code><a title="robpod.background.get_analog_output" href="#robpod.background.get_analog_output">get_analog_output</a></code></li>
+<li><code><a title="robpod.background.get_analog_output_mode" href="#robpod.background.get_analog_output_mode">get_analog_output_mode</a></code></li>
+<li><code><a title="robpod.background.get_configurable_digital_input" href="#robpod.background.get_configurable_digital_input">get_configurable_digital_input</a></code></li>
+<li><code><a title="robpod.background.get_configurable_digital_output" href="#robpod.background.get_configurable_digital_output">get_configurable_digital_output</a></code></li>
+<li><code><a title="robpod.background.get_digital_input" href="#robpod.background.get_digital_input">get_digital_input</a></code></li>
+<li><code><a title="robpod.background.get_digital_output" href="#robpod.background.get_digital_output">get_digital_output</a></code></li>
+<li><code><a title="robpod.background.get_joint_pose" href="#robpod.background.get_joint_pose">get_joint_pose</a></code></li>
+<li><code><a title="robpod.background.get_joint_velocity" href="#robpod.background.get_joint_velocity">get_joint_velocity</a></code></li>
+<li><code><a title="robpod.background.get_mode" href="#robpod.background.get_mode">get_mode</a></code></li>
+<li><code><a title="robpod.background.get_program_name" href="#robpod.background.get_program_name">get_program_name</a></code></li>
+<li><code><a title="robpod.background.get_program_state" href="#robpod.background.get_program_state">get_program_state</a></code></li>
+<li><code><a title="robpod.background.get_register" href="#robpod.background.get_register">get_register</a></code></li>
+<li><code><a title="robpod.background.get_state" href="#robpod.background.get_state">get_state</a></code></li>
+<li><code><a title="robpod.background.get_tcp_offset" href="#robpod.background.get_tcp_offset">get_tcp_offset</a></code></li>
+<li><code><a title="robpod.background.get_tcp_pose" href="#robpod.background.get_tcp_pose">get_tcp_pose</a></code></li>
+<li><code><a title="robpod.background.get_tcp_velocity" href="#robpod.background.get_tcp_velocity">get_tcp_velocity</a></code></li>
+<li><code><a title="robpod.background.get_tool_digital_input" href="#robpod.background.get_tool_digital_input">get_tool_digital_input</a></code></li>
+<li><code><a title="robpod.background.get_tool_digital_output" href="#robpod.background.get_tool_digital_output">get_tool_digital_output</a></code></li>
+<li><code><a title="robpod.background.log" href="#robpod.background.log">log</a></code></li>
+<li><code><a title="robpod.background.loop" href="#robpod.background.loop">loop</a></code></li>
+<li><code><a title="robpod.background.on" href="#robpod.background.on">on</a></code></li>
+<li><code><a title="robpod.background.retry" href="#robpod.background.retry">retry</a></code></li>
+<li><code><a title="robpod.background.set_analog_input_mode" href="#robpod.background.set_analog_input_mode">set_analog_input_mode</a></code></li>
+<li><code><a title="robpod.background.set_analog_output" href="#robpod.background.set_analog_output">set_analog_output</a></code></li>
+<li><code><a title="robpod.background.set_analog_output_mode" href="#robpod.background.set_analog_output_mode">set_analog_output_mode</a></code></li>
+<li><code><a title="robpod.background.set_configurable_digital_output" href="#robpod.background.set_configurable_digital_output">set_configurable_digital_output</a></code></li>
+<li><code><a title="robpod.background.set_digital_output" href="#robpod.background.set_digital_output">set_digital_output</a></code></li>
+<li><code><a title="robpod.background.set_register" href="#robpod.background.set_register">set_register</a></code></li>
+<li><code><a title="robpod.background.set_tool_digital_output" href="#robpod.background.set_tool_digital_output">set_tool_digital_output</a></code></li>
+<li><code><a title="robpod.background.wait_boot_completed" href="#robpod.background.wait_boot_completed">wait_boot_completed</a></code></li>
+<li><code><a title="robpod.background.when" href="#robpod.background.when">when</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="robpod.background.AnalogMode" href="#robpod.background.AnalogMode">AnalogMode</a></code></h4>
+<ul class="">
+<li><code><a title="robpod.background.AnalogMode.CURRENT" href="#robpod.background.AnalogMode.CURRENT">CURRENT</a></code></li>
+<li><code><a title="robpod.background.AnalogMode.VOLTAGE" href="#robpod.background.AnalogMode.VOLTAGE">VOLTAGE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robpod.background.DoosanRobotClient" href="#robpod.background.DoosanRobotClient">DoosanRobotClient</a></code></h4>
+<ul class="">
+<li><code><a title="robpod.background.DoosanRobotClient.get_analog_input" href="#robpod.background.DoosanRobotClient.get_analog_input">get_analog_input</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_analog_input_mode" href="#robpod.background.DoosanRobotClient.get_analog_input_mode">get_analog_input_mode</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_analog_output" href="#robpod.background.DoosanRobotClient.get_analog_output">get_analog_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_analog_output_mode" href="#robpod.background.DoosanRobotClient.get_analog_output_mode">get_analog_output_mode</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_configurable_digital_input" href="#robpod.background.DoosanRobotClient.get_configurable_digital_input">get_configurable_digital_input</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_configurable_digital_output" href="#robpod.background.DoosanRobotClient.get_configurable_digital_output">get_configurable_digital_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_digital_input" href="#robpod.background.DoosanRobotClient.get_digital_input">get_digital_input</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_digital_output" href="#robpod.background.DoosanRobotClient.get_digital_output">get_digital_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_joint_pose" href="#robpod.background.DoosanRobotClient.get_joint_pose">get_joint_pose</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_joint_velocity" href="#robpod.background.DoosanRobotClient.get_joint_velocity">get_joint_velocity</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_mode" href="#robpod.background.DoosanRobotClient.get_mode">get_mode</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_program_name" href="#robpod.background.DoosanRobotClient.get_program_name">get_program_name</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_program_state" href="#robpod.background.DoosanRobotClient.get_program_state">get_program_state</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_register" href="#robpod.background.DoosanRobotClient.get_register">get_register</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_state" href="#robpod.background.DoosanRobotClient.get_state">get_state</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_tcp_offset" href="#robpod.background.DoosanRobotClient.get_tcp_offset">get_tcp_offset</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_tcp_pose" href="#robpod.background.DoosanRobotClient.get_tcp_pose">get_tcp_pose</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_tcp_velocity" href="#robpod.background.DoosanRobotClient.get_tcp_velocity">get_tcp_velocity</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_tool_digital_input" href="#robpod.background.DoosanRobotClient.get_tool_digital_input">get_tool_digital_input</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.get_tool_digital_output" href="#robpod.background.DoosanRobotClient.get_tool_digital_output">get_tool_digital_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.set_analog_input_mode" href="#robpod.background.DoosanRobotClient.set_analog_input_mode">set_analog_input_mode</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.set_analog_output" href="#robpod.background.DoosanRobotClient.set_analog_output">set_analog_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.set_analog_output_mode" href="#robpod.background.DoosanRobotClient.set_analog_output_mode">set_analog_output_mode</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.set_configurable_digital_output" href="#robpod.background.DoosanRobotClient.set_configurable_digital_output">set_configurable_digital_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.set_digital_output" href="#robpod.background.DoosanRobotClient.set_digital_output">set_digital_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.set_register" href="#robpod.background.DoosanRobotClient.set_register">set_register</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.set_tool_digital_output" href="#robpod.background.DoosanRobotClient.set_tool_digital_output">set_tool_digital_output</a></code></li>
+<li><code><a title="robpod.background.DoosanRobotClient.wait_boot_completed" href="#robpod.background.DoosanRobotClient.wait_boot_completed">wait_boot_completed</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robpod.background.ProgramStatus" href="#robpod.background.ProgramStatus">ProgramStatus</a></code></h4>
+<ul class="">
+<li><code><a title="robpod.background.ProgramStatus.PAUSED" href="#robpod.background.ProgramStatus.PAUSED">PAUSED</a></code></li>
+<li><code><a title="robpod.background.ProgramStatus.RUNNING" href="#robpod.background.ProgramStatus.RUNNING">RUNNING</a></code></li>
+<li><code><a title="robpod.background.ProgramStatus.STOPPED" href="#robpod.background.ProgramStatus.STOPPED">STOPPED</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robpod.background.RobotMode" href="#robpod.background.RobotMode">RobotMode</a></code></h4>
+<ul class="">
+<li><code><a title="robpod.background.RobotMode.AUTOMATIC" href="#robpod.background.RobotMode.AUTOMATIC">AUTOMATIC</a></code></li>
+<li><code><a title="robpod.background.RobotMode.MANUAL" href="#robpod.background.RobotMode.MANUAL">MANUAL</a></code></li>
+<li><code><a title="robpod.background.RobotMode.TEACHING" href="#robpod.background.RobotMode.TEACHING">TEACHING</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robpod.background.RobotStatus" href="#robpod.background.RobotStatus">RobotStatus</a></code></h4>
+<ul class="two-column">
+<li><code><a title="robpod.background.RobotStatus.BACKDRIVE" href="#robpod.background.RobotStatus.BACKDRIVE">BACKDRIVE</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.EMERGENCY_STOP" href="#robpod.background.RobotStatus.EMERGENCY_STOP">EMERGENCY_STOP</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.FREE_DRIVE" href="#robpod.background.RobotStatus.FREE_DRIVE">FREE_DRIVE</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.IDLE" href="#robpod.background.RobotStatus.IDLE">IDLE</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.INITIALIZING" href="#robpod.background.RobotStatus.INITIALIZING">INITIALIZING</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.RECOVERY" href="#robpod.background.RobotStatus.RECOVERY">RECOVERY</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.SAFETY_STOP" href="#robpod.background.RobotStatus.SAFETY_STOP">SAFETY_STOP</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.SERVO_OFF" href="#robpod.background.RobotStatus.SERVO_OFF">SERVO_OFF</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.SERVO_ON" href="#robpod.background.RobotStatus.SERVO_ON">SERVO_ON</a></code></li>
+<li><code><a title="robpod.background.RobotStatus.SERVO_ON_REDUCED" href="#robpod.background.RobotStatus.SERVO_ON_REDUCED">SERVO_ON_REDUCED</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robpod.background.Rule" href="#robpod.background.Rule">Rule</a></code></h4>
+</li>
+<li>
+<h4><code><a title="robpod.background.RuleWithDo" href="#robpod.background.RuleWithDo">RuleWithDo</a></code></h4>
+<ul class="">
+<li><code><a title="robpod.background.RuleWithDo.do" href="#robpod.background.RuleWithDo.do">do</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robpod.background.RuleWithStart" href="#robpod.background.RuleWithStart">RuleWithStart</a></code></h4>
+<ul class="">
+<li><code><a title="robpod.background.RuleWithStart.start" href="#robpod.background.RuleWithStart.start">start</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="robpod.background.UrRobotClient" href="#robpod.background.UrRobotClient">UrRobotClient</a></code></h4>
+<ul class="">
+<li><code><a title="robpod.background.UrRobotClient.get_analog_input" href="#robpod.background.UrRobotClient.get_analog_input">get_analog_input</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_analog_input_mode" href="#robpod.background.UrRobotClient.get_analog_input_mode">get_analog_input_mode</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_analog_output" href="#robpod.background.UrRobotClient.get_analog_output">get_analog_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_analog_output_mode" href="#robpod.background.UrRobotClient.get_analog_output_mode">get_analog_output_mode</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_configurable_digital_input" href="#robpod.background.UrRobotClient.get_configurable_digital_input">get_configurable_digital_input</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_configurable_digital_output" href="#robpod.background.UrRobotClient.get_configurable_digital_output">get_configurable_digital_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_digital_input" href="#robpod.background.UrRobotClient.get_digital_input">get_digital_input</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_digital_output" href="#robpod.background.UrRobotClient.get_digital_output">get_digital_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_joint_pose" href="#robpod.background.UrRobotClient.get_joint_pose">get_joint_pose</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_joint_velocity" href="#robpod.background.UrRobotClient.get_joint_velocity">get_joint_velocity</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_mode" href="#robpod.background.UrRobotClient.get_mode">get_mode</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_program_name" href="#robpod.background.UrRobotClient.get_program_name">get_program_name</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_program_state" href="#robpod.background.UrRobotClient.get_program_state">get_program_state</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_register" href="#robpod.background.UrRobotClient.get_register">get_register</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_state" href="#robpod.background.UrRobotClient.get_state">get_state</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_tcp_offset" href="#robpod.background.UrRobotClient.get_tcp_offset">get_tcp_offset</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_tcp_pose" href="#robpod.background.UrRobotClient.get_tcp_pose">get_tcp_pose</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_tcp_velocity" href="#robpod.background.UrRobotClient.get_tcp_velocity">get_tcp_velocity</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_tool_digital_input" href="#robpod.background.UrRobotClient.get_tool_digital_input">get_tool_digital_input</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.get_tool_digital_output" href="#robpod.background.UrRobotClient.get_tool_digital_output">get_tool_digital_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.set_analog_input_mode" href="#robpod.background.UrRobotClient.set_analog_input_mode">set_analog_input_mode</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.set_analog_output" href="#robpod.background.UrRobotClient.set_analog_output">set_analog_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.set_analog_output_mode" href="#robpod.background.UrRobotClient.set_analog_output_mode">set_analog_output_mode</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.set_configurable_digital_output" href="#robpod.background.UrRobotClient.set_configurable_digital_output">set_configurable_digital_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.set_digital_output" href="#robpod.background.UrRobotClient.set_digital_output">set_digital_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.set_register" href="#robpod.background.UrRobotClient.set_register">set_register</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.set_tool_digital_output" href="#robpod.background.UrRobotClient.set_tool_digital_output">set_tool_digital_output</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.to_analog_value" href="#robpod.background.UrRobotClient.to_analog_value">to_analog_value</a></code></li>
+<li><code><a title="robpod.background.UrRobotClient.wait_boot_completed" href="#robpod.background.UrRobotClient.wait_boot_completed">wait_boot_completed</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
